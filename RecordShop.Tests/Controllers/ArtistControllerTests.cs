@@ -1,0 +1,81 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Moq;
+using RecordShop.Controllers;
+using RecordShop.Entities;
+using RecordShop.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using FluentAssertions;
+
+namespace RecordShop.Tests.Controllers
+{
+    public class ArtistControllerTests
+    {
+        private Mock<IArtistService> _artistServiceMock;
+
+        private ArtistController _artistController;
+
+
+        [SetUp]
+        public void Setup()
+        {
+            _artistServiceMock = new Mock<IArtistService>();
+            _artistController = new ArtistController(_artistServiceMock.Object);
+        }
+
+
+        [Test]
+        public void GetArtists_ReturnsArtists()
+        {
+            List<Artist> artistList = new List<Artist>() {
+
+                new Artist (){
+                 Name = "Amy Winehouse"
+                }
+            };
+
+            _artistServiceMock.Setup(artist => artist.GetAllArtists()).Returns(artistList);
+
+            var result = (OkObjectResult)_artistController.GetArtists();
+
+            result.StatusCode.Should().Be(200);
+            result.Value.Should().BeEquivalentTo(artistList);
+
+        }
+
+        [Test]
+        public void PostArtist_ReturnsCreated()
+        {
+            var artistToAdd = new Artist()
+            {
+                Name = "Amy Winehouse"
+            };
+
+
+            var result = (CreatedResult)_artistController.AddArtist(artistToAdd);
+
+            result.StatusCode.Should().Be(201);
+
+        }
+
+
+        [Test]
+        public void PostArtist_CallsServiceMethodOnce()
+        {
+            var artistToAdd = new Artist()
+            {
+                Name = "Amy Winehouse"
+            };
+
+
+            var result = (CreatedResult)_artistController.AddArtist(artistToAdd);
+
+            _artistServiceMock.Verify(a => a.AddArtist(artistToAdd), Times.Once());
+        }
+
+
+    }
+}
