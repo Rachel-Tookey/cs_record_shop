@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RecordShop.Migrations
 {
     /// <inheritdoc />
-    public partial class firstmigrate : Migration
+    public partial class memory_version : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -11,8 +11,8 @@ using RecordShop.Data;
 namespace RecordShop.Migrations
 {
     [DbContext(typeof(RecordShopContext))]
-    [Migration("20250114121622_first-migrate")]
-    partial class firstmigrate
+    [Migration("20250114123016_memory_version")]
+    partial class memory_version
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

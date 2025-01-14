@@ -14,10 +14,18 @@ namespace RecordShop
 
             // Add services to the container.
 
-            string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-            Console.WriteLine(connectionString);
+            // string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-            builder.Services.AddDbContext<RecordShopContext>(options => options.UseSqlite(connectionString)); 
+            // 
+
+
+            builder.Services.AddDbContext<RecordShopContext>(options =>
+            
+            options.UseSqlite("Data Source=:memory:")
+            
+            ); 
+
+            
 
             builder.Services.AddControllers();
 
