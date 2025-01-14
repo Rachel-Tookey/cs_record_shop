@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using RecordShop.Entities;
+using RecordShop.Services;
 
 namespace RecordShop.Controllers
 {
@@ -9,15 +11,33 @@ namespace RecordShop.Controllers
 
         private readonly ILogger<AlbumController> _logger;
 
-        public AlbumController(ILogger<AlbumController> logger)
+        private readonly IAlbumService _albumService; 
+
+        public AlbumController(ILogger<AlbumController> logger, IAlbumService albumService)
         {
             _logger = logger;
+            _albumService = albumService;
         }
 
-        [HttpGet(Name = "GetRecords")]
-        public IActionResult GetRecords()
+        [HttpGet(Name = "GetAlbums")]
+        public IActionResult GetAlbums()
         {
-            return Ok();
-    }
+            var albums = _albumService.GetAllAlbums();
+            return Ok(albums);
+        }
+
+        [HttpPost(Name = "AddAlbums")]
+        public IActionResult AddAlbum(Album album)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            _albumService.AddAlbum(album);
+            return Created("/Albums", "Album added");
+        }
+
+
+
     }
 }
