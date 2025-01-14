@@ -9,15 +9,13 @@ namespace RecordShop.Controllers
     public class AlbumController : ControllerBase
     {
 
-        private readonly ILogger<AlbumController> _logger;
-
         private readonly IAlbumService _albumService; 
 
-        public AlbumController(ILogger<AlbumController> logger, IAlbumService albumService)
+        public AlbumController(IAlbumService albumService)
         {
-            _logger = logger;
             _albumService = albumService;
         }
+
 
         [HttpGet(Name = "GetAlbums")]
         public IActionResult GetAlbums()

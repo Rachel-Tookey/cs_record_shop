@@ -9,13 +9,10 @@ namespace RecordShop.Controllers
     public class ArtistController : ControllerBase
     {
 
-        private readonly ILogger<ArtistController> _logger;
-
         private readonly IArtistService _artistService;
 
-        public ArtistController(ILogger<ArtistController> logger, IArtistService artistService)
+        public ArtistController(IArtistService artistService)
         {
-            _logger = logger;
             _artistService = artistService;
         }
 

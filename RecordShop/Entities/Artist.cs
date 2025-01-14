@@ -1,4 +1,6 @@
 ﻿using System.Text.Json.Serialization;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace RecordShop.Entities
 {
@@ -7,6 +9,7 @@ namespace RecordShop.Entities
         [JsonPropertyName("id")]
         public int Id { get; set; }
 
+        [Required]
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
