@@ -4,12 +4,12 @@ namespace RecordShop.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RecordController : ControllerBase
+    public class AlbumController : ControllerBase
     {
 
-        private readonly ILogger<RecordController> _logger;
+        private readonly ILogger<AlbumController> _logger;
 
-        public RecordController(ILogger<RecordController> logger)
+        public AlbumController(ILogger<AlbumController> logger)
         {
             _logger = logger;
         }
