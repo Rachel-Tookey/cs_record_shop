@@ -63,6 +63,23 @@ namespace RecordShop.Tests.Controllers
 
 
         [Test]
+        public void PostInvalidArtist_ReturnsBadRequest()
+        {
+            var artistToAdd = new Artist()
+            {
+                Name = "Amy Winehouse" 
+            };
+
+            _artistController.ModelState.AddModelError("Test Error", "This is an error"); 
+
+            var result = (BadRequestObjectResult)_artistController.AddArtist(artistToAdd);
+
+            result.StatusCode.Should().Be(400);
+
+        }
+
+
+        [Test]
         public void PostArtist_CallsServiceMethodOnce()
         {
             var artistToAdd = new Artist()

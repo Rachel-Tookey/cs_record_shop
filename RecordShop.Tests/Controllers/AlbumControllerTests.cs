@@ -63,6 +63,27 @@ namespace RecordShop.Tests.Controllers
 
         }
 
+        [Test]
+        public void PostInvalidAlbum_ReturnsBadRequest()
+        {
+            var albumToAdd = new Album()
+            {
+                Name = "Back to Black",
+                ArtistId = 1,
+                Description = "Album of the Decade",
+                ReleaseDate = new DateTime(2005, 04, 12)
+            };
+
+
+            _albumController.ModelState.AddModelError("Test Error", "This is an error");
+
+            var result = (BadRequestObjectResult)_albumController.AddAlbum(albumToAdd);
+
+            result.StatusCode.Should().Be(400);
+
+        }
+
+
 
         [Test]
         public void PostAlbum_CallsServiceMethodOnce()

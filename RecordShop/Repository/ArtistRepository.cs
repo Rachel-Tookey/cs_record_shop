@@ -16,9 +16,9 @@ namespace RecordShop.Repository
     {
         private readonly RecordShopContext _recordShopContext;
 
-        public ArtistRepository(RecordShopContext rsContext)
+        public ArtistRepository(RecordShopContext recordShopContext)
         {
-            _recordShopContext = rsContext;
+            _recordShopContext = recordShopContext;
 
         }
 

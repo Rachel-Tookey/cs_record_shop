@@ -24,7 +24,6 @@ namespace RecordShop.Controllers
             return Ok(albums);
         }
 
-
         [HttpPost(Name = "AddAlbums")]
         public IActionResult AddAlbum(Album album)
         {

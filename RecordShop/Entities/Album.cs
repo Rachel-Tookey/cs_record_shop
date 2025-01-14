@@ -9,7 +9,6 @@ namespace RecordShop.Entities
         [Required]
         public string Name { get; set; }
 
-        [Required]
         public int ArtistId { get; set; }
 
         public Artist Artist { get; set; }
