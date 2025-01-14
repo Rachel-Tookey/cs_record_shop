@@ -26,6 +26,8 @@ namespace RecordShop.Tests.Repository
         {
             var connection = new SqliteConnection("Data Source=:memory:");
             connection.Open();
+            SqliteCommand cmd = new SqliteCommand("PRAGMA foreign_keys = ON", connection);
+            cmd.ExecuteNonQuery(); 
             var options = new DbContextOptionsBuilder<RecordShopContext>().UseSqlite(connection).Options;
             RecordShopContext context = new RecordShopContext(options);
 
@@ -67,10 +69,10 @@ namespace RecordShop.Tests.Repository
         [Test]
         public void AddAlbum_ForeignKeyError()
         {
-            var albumToAdd = new Album { Name = "Amy The Real Me 2", ArtistId = 2, Description = "Yo Yo", ReleaseDate = new DateTime(2024, 02, 02) };
+            var albumToAdd = new Album { Name = "Amy The Real Me 2", ArtistId = 20, Description = "Yo Yo", ReleaseDate = new DateTime(2024, 02, 02) };
 
             Action addAlbumAction = () => _albumRepository.AddAlbum(albumToAdd);
-            addAlbumAction.Should().Throw<ArgumentException>();
+            addAlbumAction.Should().Throw<Microsoft.EntityFrameworkCore.DbUpdateException>();
 
         }
 
