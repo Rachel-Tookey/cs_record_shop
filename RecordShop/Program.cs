@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using RecordShop.Data;
+
 namespace RecordShop
 {
     public class Program
@@ -8,6 +11,10 @@ namespace RecordShop
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            string connectionString = builder.Configuration.GetConnectionString("DefaultConnection"); 
+
+            builder.Services.AddDbContext<RecordShopContext>(options => options.UseSqlServer(connectionString)); 
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
