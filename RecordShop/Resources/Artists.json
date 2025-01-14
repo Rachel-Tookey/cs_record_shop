@@ -1,0 +1,21 @@
+﻿[
+  {
+    "id" :  1, 
+    "name": "Adele"
+
+  },
+  {
+    "id": 2,
+    "name": "Amy Winehouse"
+
+  },
+  {
+    "id": 3,
+    "name": "Jamiroquai"
+
+  },
+  {
+    "id": 4,
+    "name": "Sabrina Carpenter"
+  }
+]

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RecordShop.Entities;
+using System.Text.Json; 
 
 namespace RecordShop.Data
 {
@@ -17,6 +18,11 @@ namespace RecordShop.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+           
+            modelBuilder.Entity<Artist>().Property(e => e.Id).ValueGeneratedOnAdd(); 
+            
+            modelBuilder.Entity<Artist>().HasData(JsonSerializer.Deserialize<List<Artist>>(File.ReadAllText("Resources/Artists.json")));
+
             modelBuilder.Entity<Album>()
                 .HasMany(e => e.Genres)
                 .WithMany(e => e.Albums)
