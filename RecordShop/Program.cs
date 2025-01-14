@@ -1,6 +1,8 @@
 
 using Microsoft.EntityFrameworkCore;
 using RecordShop.Data;
+using RecordShop.Repository;
+using RecordShop.Services;
 
 namespace RecordShop
 {
@@ -10,13 +12,40 @@ namespace RecordShop
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
 
-            string connectionString = builder.Configuration.GetConnectionString("DefaultConnection"); 
+            if (builder.Environment.IsDevelopment())
+            {
 
-            builder.Services.AddDbContext<RecordShopContext>(options => options.UseSqlServer(connectionString)); 
+                string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+                builder.Services.AddDbContext<RecordShopContext>(options =>
+
+                    options.UseSqlite(connectionString)
+
+                    );
+
+            }
+            else if (builder.Environment.IsProduction())
+            {
+                string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+                builder.Services.AddDbContext<RecordShopContext>(options =>
+
+                  options.UseSqlServer("DefaultConnection")
+
+                  );
+            }
+
+
 
             builder.Services.AddControllers();
+
+            builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
+            builder.Services.AddScoped<IAlbumService, AlbumService>();
+
+            builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
+            builder.Services.AddScoped<IArtistService, ArtistService>();
+
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
