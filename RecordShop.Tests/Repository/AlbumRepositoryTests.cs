@@ -26,8 +26,6 @@ namespace RecordShop.Tests.Repository
         {
             var connection = new SqliteConnection("Data Source=:memory:");
             connection.Open();
-            SqliteCommand cmd = new SqliteCommand("PRAGMA foreign_keys = ON", connection);
-            cmd.ExecuteNonQuery(); 
             var options = new DbContextOptionsBuilder<RecordShopContext>().UseSqlite(connection).Options;
             RecordShopContext context = new RecordShopContext(options);
 
