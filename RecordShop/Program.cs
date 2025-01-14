@@ -19,8 +19,9 @@ namespace RecordShop
                 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
                 builder.Services.AddDbContext<RecordShopContext>(options =>
-
-                    options.UseSqlite(connectionString)
+                {
+                    options.UseSqlite(connectionString);
+                }
 
                     );
 

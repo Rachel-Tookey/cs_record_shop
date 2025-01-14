@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using RecordShop.DTO;
 using RecordShop.Entities;
 using RecordShop.Services;
 
@@ -24,14 +25,27 @@ namespace RecordShop.Controllers
             return Ok(albums);
         }
 
+
+
         [HttpPost(Name = "AddAlbums")]
-        public IActionResult AddAlbum(Album album)
+        public IActionResult AddAlbum(AlbumDTO albumDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            _albumService.AddAlbum(album);
+
+            Album newAlbum = new Album();
+
+            // map these objects using mapper 
+            newAlbum.Name = albumDTO.Name;
+            newAlbum.ArtistId = albumDTO.ArtistId;
+            newAlbum.Description = albumDTO.Description;
+            newAlbum.ReleaseDate = albumDTO.ReleaseDate;
+
+
+
+            _albumService.AddAlbum(newAlbum);
             return Created("/Albums", "Album added");
         }
 

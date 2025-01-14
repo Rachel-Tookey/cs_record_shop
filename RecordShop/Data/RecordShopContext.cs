@@ -8,6 +8,7 @@ namespace RecordShop.Data
     {
 
         public RecordShopContext(DbContextOptions<RecordShopContext> options) : base(options) {
+
             Database.OpenConnection(); 
             Database.EnsureCreated();
         } 
