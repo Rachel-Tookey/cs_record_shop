@@ -12,20 +12,30 @@ namespace RecordShop
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
 
-            // string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            if (builder.Environment.IsDevelopment())
+            {
 
-            // 
+                string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+                builder.Services.AddDbContext<RecordShopContext>(options =>
+
+                    options.UseSqlite(connectionString)
+
+                    );
+
+            }
+            else if (builder.Environment.IsProduction())
+            {
+                string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+                builder.Services.AddDbContext<RecordShopContext>(options =>
+
+                  options.UseSqlServer("DefaultConnection")
+
+                  );
+            }
 
 
-            builder.Services.AddDbContext<RecordShopContext>(options =>
-            
-            options.UseSqlite("Data Source=:memory:")
-            
-            ); 
-
-            
 
             builder.Services.AddControllers();
 
