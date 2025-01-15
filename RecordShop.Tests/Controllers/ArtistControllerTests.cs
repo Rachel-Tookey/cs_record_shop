@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
+using RecordShop.DTO;
+using RecordShop.Wrappers;
 
 namespace RecordShop.Tests.Controllers
 {
@@ -92,6 +94,108 @@ namespace RecordShop.Tests.Controllers
 
             _artistServiceMock.Verify(a => a.AddArtist(artistToAdd), Times.Once());
         }
+
+
+        [Test]
+        public void GetArtistById_ReturnsOk()
+        {
+            var artistToReturn = new Artist()
+            {
+                Id = 1, 
+                Name = "Amy Winehouse"
+            };
+
+            _artistServiceMock.Setup(a => a.ExistsById(1)).Returns(true);
+            _artistServiceMock.Setup(a => a.GetArtistById(1)).Returns(artistToReturn);
+
+
+            var result = (OkObjectResult)_artistController.GetArtistById(1);
+
+            result.StatusCode.Should().Be(200);
+            result.Value.Should().BeEquivalentTo(artistToReturn);
+
+        }
+
+
+        [Test]
+        public void GetArtistById_ReturnsBadRequest()
+        {
+            _artistServiceMock.Setup(a => a.ExistsById(1)).Returns(false);
+
+            var result = (BadRequestObjectResult)_artistController.GetArtistById(1);
+
+            result.StatusCode.Should().Be(400);
+
+        }
+
+        [Test]
+        public void PutArtistInvalidInput_ReturnsBadRequest()
+        {
+
+            var updateArtist = new UpdateArtistWrapper()
+            {
+                Id = 2,
+                Name = "Amy Jade Winehouse"
+            };
+
+            _artistController.ModelState.AddModelError("Test Error", "This is an error");
+
+            var result = (BadRequestResult)_artistController.PutArtist(updateArtist);
+
+            result.StatusCode.Should().Be(400);
+
+        }
+
+        [Test]
+        public void PutArtist_ReturnsUpdatedArtist()
+        {
+
+            var updateArtist = new UpdateArtistWrapper()
+            {
+                Id = 2,
+                Name = "Amy Jade Winehouse"
+            };
+
+            var updatedArtist = new Artist()
+            {
+                Id = 2,
+                Name = "Amy Jade Winehouse"
+            };
+
+
+            _artistServiceMock.Setup(a => a.UpdateArtistByName(updateArtist)).Returns(updatedArtist);
+
+
+            var result = (OkObjectResult)_artistController.PutArtist(updateArtist);
+
+
+            result.StatusCode.Should().Be(200);
+            result.Value.Should().BeEquivalentTo(updatedArtist);
+
+        }
+
+        public void DeleteArtistById_ReturnsBadRequest()
+        {
+            
+            _artistServiceMock.Setup(a => a.ExistsById(1)).Returns(false);
+
+            var result = (BadRequestObjectResult)_artistController.DeleteArtist(1);
+
+            result.StatusCode.Should().Be(400);
+            result.Value.Should().Be("Id does not exist");
+
+        }
+
+        public void DeleteArtistById_ReturnsNoContent()
+        {
+
+            _artistServiceMock.Setup(a => a.ExistsById(1)).Returns(true);
+
+            var result = (NoContentResult)_artistController.DeleteArtist(1);
+
+            result.StatusCode.Should().Be(204);
+        }
+
 
 
     }

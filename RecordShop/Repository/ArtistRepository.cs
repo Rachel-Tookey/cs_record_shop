@@ -1,14 +1,17 @@
 ﻿using RecordShop.Data;
 using RecordShop.Entities;
+using RecordShop.Wrappers;
 
 namespace RecordShop.Repository
 {
     public interface IArtistRepository
     {
-        public List<Artist> GetAllArtists();
-
+        public List<Artist> FetchAllArtists();
         public void AddArtist(Artist artist);
-
+        public Artist FetchArtistById(int id);
+        public bool CheckArtistExistsById(int id);
+        public Artist UpdateArtistByName(UpdateArtistWrapper artistUpdate);
+        public void DeleteById(int id);
     }
 
 
@@ -22,7 +25,7 @@ namespace RecordShop.Repository
 
         }
 
-        public List<Artist> GetAllArtists()
+        public List<Artist> FetchAllArtists()
         {
             return _recordShopContext.Artists.ToList();
         }
@@ -32,6 +35,33 @@ namespace RecordShop.Repository
             _recordShopContext.Artists.Add(artist);
             _recordShopContext.SaveChanges();
         }
+
+        public Artist FetchArtistById(int id)
+        {
+            return _recordShopContext.Artists.Where(a => a.Id == id).First(); 
+
+        }
+
+        public bool CheckArtistExistsById(int id)
+        {
+            return _recordShopContext.Artists.Where(a => a.Id == id).Any(); 
+        }
+
+        public Artist UpdateArtistByName(UpdateArtistWrapper artistUpdate)
+        {
+            var artistRecord = FetchArtistById(artistUpdate.Id);
+            artistRecord.Name = artistUpdate.Name;
+            _recordShopContext.SaveChanges(); 
+            return artistRecord;
+        }
+
+        public void DeleteById(int id)
+        {
+            var artistRecord = FetchArtistById(id);
+            _recordShopContext.Artists.Remove(artistRecord);
+            _recordShopContext.SaveChanges();
+        }
+
 
     }
 }
