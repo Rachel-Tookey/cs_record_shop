@@ -37,7 +37,7 @@ namespace RecordShop.Tests.Services
                 }
             };
 
-            _artistRepositoryMock.Setup(a => a.GetAllArtists()).Returns(artistList);
+            _artistRepositoryMock.Setup(a => a.FetchAllArtists()).Returns(artistList);
 
             var result = _artistService.GetAllArtists();
 
@@ -59,6 +59,51 @@ namespace RecordShop.Tests.Services
 
             _artistRepositoryMock.Verify(a => a.AddArtist(artistToAdd), Times.Once());
         }
+
+
+        [Test]
+        public void GetArtistById_ReturnsArtist()
+        {
+            var artistToAdd = new Artist()
+            {
+                Id = 1, 
+                Name = "Amy Winehouse"
+            };
+
+            _artistRepositoryMock.Setup(a => a.FetchArtistById(1)).Returns(artistToAdd);
+
+            var result = _artistService.GetArtistById(1);
+
+            result.Should().BeEquivalentTo(artistToAdd);
+
+        }
+
+
+        [Test]
+        public void CheckArtistExistsById_ReturnsTrue()
+        {
+            
+            _artistRepositoryMock.Setup(a => a.CheckArtistExistsById(1)).Returns(true);
+
+            var result = _artistService.ExistsById(1);
+
+            result.Should().Be(true); 
+
+        }
+
+        [Test]
+        public void CheckArtistExistsById_ReturnsFalse()
+        {
+
+            _artistRepositoryMock.Setup(a => a.CheckArtistExistsById(1)).Returns(false);
+
+            var result = _artistService.ExistsById(1);
+
+            result.Should().Be(false);
+
+        }
+
+
 
     }
 

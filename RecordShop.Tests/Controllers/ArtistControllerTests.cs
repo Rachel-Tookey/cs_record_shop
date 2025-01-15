@@ -94,5 +94,39 @@ namespace RecordShop.Tests.Controllers
         }
 
 
+        [Test]
+        public void GetArtistById_ReturnsOk()
+        {
+            var artistToReturn = new Artist()
+            {
+                Id = 1, 
+                Name = "Amy Winehouse"
+            };
+
+            _artistServiceMock.Setup(a => a.ExistsById(1)).Returns(true);
+            _artistServiceMock.Setup(a => a.GetArtistById(1)).Returns(artistToReturn);
+
+
+            var result = (OkObjectResult)_artistController.GetArtistById(1);
+
+            result.StatusCode.Should().Be(200);
+            result.Value.Should().BeEquivalentTo(artistToReturn);
+
+        }
+
+
+        [Test]
+        public void GetArtistById_ReturnsBadRequest()
+        {
+            
+
+            _artistServiceMock.Setup(a => a.ExistsById(1)).Returns(false);
+
+            var result = (BadRequestObjectResult)_artistController.GetArtistById(1);
+
+            result.StatusCode.Should().Be(400);
+
+        }
+
     }
 }

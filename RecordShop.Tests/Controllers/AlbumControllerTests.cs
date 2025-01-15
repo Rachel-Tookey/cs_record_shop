@@ -64,9 +64,6 @@ namespace RecordShop.Tests.Controllers
         }
 
 
-        // fix this: 
-
-
         [Test]
         public void PostAlbum_CallsServiceMethodOnce()
         {
@@ -77,7 +74,6 @@ namespace RecordShop.Tests.Controllers
                 Description = "Album of the Decade",
                 ReleaseDate = new DateTime(2005, 04, 12)
             };
-
 
 
             var result = (CreatedResult)_albumController.AddAlbum(albumToAdd);

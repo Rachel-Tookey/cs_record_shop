@@ -1,4 +1,5 @@
 
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using RecordShop.Data;
 using RecordShop.Repository;
@@ -15,25 +16,19 @@ namespace RecordShop
 
             if (builder.Environment.IsDevelopment())
             {
-
                 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+                var sqliteConnection = new SqliteConnection(connectionString);
+                sqliteConnection.Open();
 
                 builder.Services.AddDbContext<RecordShopContext>(options =>
                 {
-                    options.UseSqlite(connectionString);
-                }
-
-                    );
-
+                    options.UseSqlite(sqliteConnection);
+                });
             }
             else if (builder.Environment.IsProduction())
             {
                 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-                builder.Services.AddDbContext<RecordShopContext>(options =>
-
-                  options.UseSqlServer("DefaultConnection")
-
-                  );
+                builder.Services.AddDbContext<RecordShopContext>(options => options.UseSqlServer("DefaultConnection") );
             }
 
 

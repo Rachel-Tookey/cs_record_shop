@@ -32,7 +32,7 @@ namespace RecordShop.Tests.Repository
         [Test]
         public void GetAllArtists_ReturnsList()
         {
-            var result = _artistRepository.GetAllArtists();
+            var result = _artistRepository.FetchAllArtists();
 
             result.Count.Should().Be(4);
             result[0].Name.Should().Be("Adele");
@@ -41,18 +41,47 @@ namespace RecordShop.Tests.Repository
 
 
         [Test]
-        public void AddArtist_AddsArtistToDb()
+        public void AddArtist_AddsArtist()
         {
             var artistToAdd = new Artist { Name = "Amy" };
 
             _artistRepository.AddArtist(artistToAdd);
 
-            var result = _artistRepository.GetAllArtists();
+            var result = _artistRepository.FetchAllArtists();
 
             result.Count.Should().Be(5);
             result[4].Name.Should().Be("Amy");
 
         }
+
+        [Test]
+        public void ExistsById_ReturnsTrue()
+        {
+            var result = _artistRepository.CheckArtistExistsById(1);
+
+            result.Should().Be(true);
+
+        }
+
+        [Test]
+        public void ExistsById_ReturnsFalse()
+        {
+            var result = _artistRepository.CheckArtistExistsById(10);
+
+            result.Should().Be(false);
+
+        }
+
+
+        [Test]
+        public void FetchArtistById_ReturnsArtist()
+        {
+            var result = _artistRepository.FetchArtistById(1);
+
+            result.Name.Should().Be("Adele");
+
+        }
+
 
     }
 }

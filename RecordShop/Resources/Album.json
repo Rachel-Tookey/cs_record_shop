@@ -1,0 +1,9 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "Back to Black",
+    "ArtistId": 2,
+    "Description": "Good album",
+    "DateTime" :  "2025-06-03"
+  }
+]

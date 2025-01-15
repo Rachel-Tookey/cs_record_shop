@@ -13,7 +13,7 @@ namespace RecordShop.Entities
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        public List<Album> Albums { get; set; } 
+        public List<Album> Albums { get; set; }
 
     }
 }
