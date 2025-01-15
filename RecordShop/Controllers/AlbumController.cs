@@ -6,7 +6,7 @@ using RecordShop.Services;
 namespace RecordShop.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AlbumController : ControllerBase
     {
 
@@ -21,7 +21,7 @@ namespace RecordShop.Controllers
         [HttpGet(Name = "GetAlbums")]
         public IActionResult GetAlbums()
         {
-            var albums = _albumService.GetAllAlbums();
+            var albums = _albumService.GetAlbums();
             return Ok(albums);
         }
 

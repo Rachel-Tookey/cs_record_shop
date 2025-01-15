@@ -59,7 +59,7 @@ namespace RecordShop.Tests.Repository
         [Test]
         public void ExistsById_ReturnsTrue()
         {
-            var result = _artistRepository.CheckArtistExistsById(1);
+            var result = _artistRepository.ExistsById(1);
 
             result.Should().Be(true);
 
@@ -68,7 +68,7 @@ namespace RecordShop.Tests.Repository
         [Test]
         public void ExistsById_ReturnsFalse()
         {
-            var result = _artistRepository.CheckArtistExistsById(10);
+            var result = _artistRepository.ExistsById(10);
 
             result.Should().Be(false);
 
@@ -89,13 +89,13 @@ namespace RecordShop.Tests.Repository
         public void DeleteArtistById_DeletesArtist()
         {
 
-            var beforeResult = _artistRepository.CheckArtistExistsById(1);
+            var beforeResult = _artistRepository.ExistsById(1);
 
             beforeResult.Should().Be(true);
 
-            _artistRepository.DeleteById(1);
+            _artistRepository.RemoveById(1);
 
-            var afterResult = _artistRepository.CheckArtistExistsById(1);
+            var afterResult = _artistRepository.ExistsById(1);
 
             afterResult.Should().Be(false);
         }

@@ -9,9 +9,9 @@ namespace RecordShop.Repository
         public List<Artist> FetchAllArtists();
         public void AddArtist(Artist artist);
         public Artist FetchArtistById(int id);
-        public bool CheckArtistExistsById(int id);
+        public bool ExistsById(int id);
         public Artist UpdateArtistByName(UpdateArtistWrapper artistUpdate);
-        public void DeleteById(int id);
+        public void RemoveById(int id);
     }
 
 
@@ -42,7 +42,7 @@ namespace RecordShop.Repository
 
         }
 
-        public bool CheckArtistExistsById(int id)
+        public bool ExistsById(int id)
         {
             return _recordShopContext.Artists.Where(a => a.Id == id).Any(); 
         }
@@ -55,7 +55,7 @@ namespace RecordShop.Repository
             return artistRecord;
         }
 
-        public void DeleteById(int id)
+        public void RemoveById(int id)
         {
             var artistRecord = FetchArtistById(id);
             _recordShopContext.Artists.Remove(artistRecord);

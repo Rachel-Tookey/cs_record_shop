@@ -45,7 +45,7 @@ namespace RecordShop.Services
 
         public bool ExistsById(int id)
         {
-            return _artistRepository.CheckArtistExistsById(id);
+            return _artistRepository.ExistsById(id);
         }
 
         public Artist UpdateArtistByName(UpdateArtistWrapper artistUpdate)
@@ -55,7 +55,7 @@ namespace RecordShop.Services
 
         public void DeleteById(int id)
         {
-            _artistRepository.DeleteById(id);
+            _artistRepository.RemoveById(id);
         }
 
 

@@ -42,7 +42,7 @@ namespace RecordShop.Tests.Repository
         [Test]
         public void GetAllAlbums_ReturnsList()
         {
-            var result = _albumRepository.GetAllAlbums();
+            var result = _albumRepository.FetchAlbums();
 
             result.Count.Should().Be(2);
             result[1].Name.Should().Be("Amy The Real Me");
@@ -57,7 +57,7 @@ namespace RecordShop.Tests.Repository
 
             _albumRepository.AddAlbum(albumToAdd);
 
-            var result = _albumRepository.GetAllAlbums();
+            var result = _albumRepository.FetchAlbums();
 
             result.Count.Should().Be(3);
             result[2].Name.Should().Be("Amy The Real Me 2");

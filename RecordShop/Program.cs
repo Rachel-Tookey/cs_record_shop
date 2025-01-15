@@ -2,8 +2,10 @@
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using RecordShop.Data;
+using RecordShop.HealthChecks;
 using RecordShop.Repository;
 using RecordShop.Services;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace RecordShop
 {
@@ -46,6 +48,14 @@ namespace RecordShop
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddHealthChecks().AddCheck<RecordShopHealthCheck>("api_check",
+                failureStatus: HealthStatus.Unhealthy,
+                tags: new[] { "api" }
+                )
+                .AddCheck("Db-check", new SqlConnectionHealthCheck(builder.Configuration.GetConnectionString("DefaultConnection")),
+                HealthStatus.Unhealthy,
+                new string[] { "orderingdb" }); 
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -59,6 +69,7 @@ namespace RecordShop
 
             app.UseAuthorization();
 
+            app.UseHealthChecks("/health"); 
 
             app.MapControllers();
 
