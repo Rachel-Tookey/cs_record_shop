@@ -48,9 +48,8 @@ namespace RecordShop
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddHealthChecks().AddCheck<RecordShopHealthCheck>("api_check",
-                failureStatus: HealthStatus.Unhealthy,
-                tags: new[] { "api" }
+            builder.Services.AddHealthChecks().AddCheck("api_check",
+                new RecordShopHealthCheck("https://localhost:7278")
                 )
                 .AddCheck("Db-check", new SqlConnectionHealthCheck(builder.Configuration.GetConnectionString("DefaultConnection")),
                 HealthStatus.Unhealthy,
