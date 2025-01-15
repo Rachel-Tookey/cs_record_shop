@@ -42,9 +42,9 @@ namespace RecordShop.Tests.Services
                 }
             };
 
-            _albumRepositoryMock.Setup(album => album.GetAllAlbums()).Returns(albumList);
+            _albumRepositoryMock.Setup(album => album.FetchAlbums()).Returns(albumList);
 
-            var result = _albumService.GetAllAlbums();
+            var result = _albumService.GetAlbums();
 
             result.Should().BeEquivalentTo(albumList);
 

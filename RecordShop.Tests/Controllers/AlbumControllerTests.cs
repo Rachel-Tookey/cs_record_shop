@@ -37,7 +37,7 @@ namespace RecordShop.Tests.Controllers
                 }
             };
 
-            _albumServiceMock.Setup(album => album.GetAllAlbums()).Returns(albumList);
+            _albumServiceMock.Setup(album => album.GetAlbums()).Returns(albumList);
 
             var result = (OkObjectResult) _albumController.GetAlbums();
 

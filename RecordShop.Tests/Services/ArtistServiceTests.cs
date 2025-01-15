@@ -86,7 +86,7 @@ namespace RecordShop.Tests.Services
         public void CheckArtistExistsById_ReturnsTrue()
         {
             
-            _artistRepositoryMock.Setup(a => a.CheckArtistExistsById(1)).Returns(true);
+            _artistRepositoryMock.Setup(a => a.ExistsById(1)).Returns(true);
 
             var result = _artistService.ExistsById(1);
 
@@ -98,7 +98,7 @@ namespace RecordShop.Tests.Services
         public void CheckArtistExistsById_ReturnsFalse()
         {
 
-            _artistRepositoryMock.Setup(a => a.CheckArtistExistsById(1)).Returns(false);
+            _artistRepositoryMock.Setup(a => a.ExistsById(1)).Returns(false);
 
             var result = _artistService.ExistsById(1);
 
@@ -111,7 +111,7 @@ namespace RecordShop.Tests.Services
         {
             _artistService.DeleteById(1);
 
-            _artistRepositoryMock.Verify(a => a.DeleteById(1), Times.Once);
+            _artistRepositoryMock.Verify(a => a.RemoveById(1), Times.Once);
 
         }
 

@@ -6,7 +6,7 @@ namespace RecordShop.Repository
 {
     public interface IAlbumRepository
     {
-        public List<Album> GetAllAlbums(); 
+        public List<Album> FetchAlbums(); 
 
         public void AddAlbum(Album album);  
 
@@ -22,7 +22,7 @@ namespace RecordShop.Repository
         
         }
 
-        public List<Album> GetAllAlbums()
+        public List<Album> FetchAlbums()
         {
             return _recordShopContext.Albums.ToList();
         }

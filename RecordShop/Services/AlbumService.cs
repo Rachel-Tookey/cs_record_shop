@@ -7,7 +7,7 @@ namespace RecordShop.Services
 
     public interface IAlbumService
     {
-        public List<Album> GetAllAlbums();
+        public List<Album> GetAlbums();
 
         public void AddAlbum(Album album);
 
@@ -25,9 +25,9 @@ namespace RecordShop.Services
 
         }
 
-        public List<Album> GetAllAlbums()
+        public List<Album> GetAlbums()
         {
-            return _albumRepository.GetAllAlbums();
+            return _albumRepository.FetchAlbums();
         }
 
         public void AddAlbum(Album album)

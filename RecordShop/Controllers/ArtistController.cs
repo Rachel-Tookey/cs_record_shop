@@ -6,7 +6,7 @@ using RecordShop.Wrappers;
 namespace RecordShop.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ArtistController : ControllerBase
     {
 
