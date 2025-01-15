@@ -2,8 +2,10 @@
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using RecordShop.Data;
+using RecordShop.DTO;
 using RecordShop.Entities;
 using RecordShop.Repository;
+using RecordShop.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,6 +83,44 @@ namespace RecordShop.Tests.Repository
             result.Name.Should().Be("Adele");
 
         }
+
+
+        [Test]
+        public void DeleteArtistById_DeletesArtist()
+        {
+
+            var beforeResult = _artistRepository.CheckArtistExistsById(1);
+
+            beforeResult.Should().Be(true);
+
+            _artistRepository.DeleteById(1);
+
+            var afterResult = _artistRepository.CheckArtistExistsById(1);
+
+            afterResult.Should().Be(false);
+        }
+
+
+        [Test]
+        public void UpdateArtistName_UpdatesArtist()
+        {
+            var beforeArtist = _artistRepository.FetchArtistById(2);
+
+            beforeArtist.Name.Should().Be("Amy Winehouse");
+
+            var updateArtist = new UpdateArtistWrapper()
+            {
+                Id = 2,
+                Name = "Amy Jade Winehouse"
+            };
+
+            var afterArtist = _artistRepository.UpdateArtistByName(updateArtist);
+
+            afterArtist.Name.Should().Be("Amy Jade Winehouse");
+
+        }
+
+
 
 
     }

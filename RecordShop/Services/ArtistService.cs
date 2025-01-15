@@ -1,6 +1,6 @@
-﻿using RecordShop.DTO;
-using RecordShop.Entities;
+﻿using RecordShop.Entities;
 using RecordShop.Repository;
+using RecordShop.Wrappers;
 using System.Reflection.Metadata.Ecma335;
 
 namespace RecordShop.Services
@@ -12,7 +12,7 @@ namespace RecordShop.Services
         public void AddArtist(Artist artist);
         public Artist GetArtistById(int id);
         public bool ExistsById(int id);
-        public Artist UpdateArtistByName(UpdateArtistDTO artistUpdate);
+        public Artist UpdateArtistByName(UpdateArtistWrapper artistUpdate);
         public void DeleteById(int id);
     }
 
@@ -48,7 +48,7 @@ namespace RecordShop.Services
             return _artistRepository.CheckArtistExistsById(id);
         }
 
-        public Artist UpdateArtistByName(UpdateArtistDTO artistUpdate)
+        public Artist UpdateArtistByName(UpdateArtistWrapper artistUpdate)
         {
             return _artistRepository.UpdateArtistByName(artistUpdate);
         }

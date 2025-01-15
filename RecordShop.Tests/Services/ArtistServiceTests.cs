@@ -7,8 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FluentAssertions; 
-
+using FluentAssertions;
+using RecordShop.DTO;
+using Microsoft.AspNetCore.Mvc;
+using RecordShop.Controllers;
+using RecordShop.Wrappers;
 namespace RecordShop.Tests.Services
 {
     public class ArtistServiceTests
@@ -101,6 +104,55 @@ namespace RecordShop.Tests.Services
 
             result.Should().Be(false);
 
+        }
+
+        [Test]
+        public void DeleteById_CallsDeleteByIdOnce()
+        {
+            _artistService.DeleteById(1);
+
+            _artistRepositoryMock.Verify(a => a.DeleteById(1), Times.Once);
+
+        }
+
+        [Test]
+        public void UpdateArtist_CallsUpdateOnce()
+        {
+            var updateArtist = new UpdateArtistWrapper()
+            {
+                Id = 2,
+                Name = "Amy Jade Winehouse"
+            };
+
+
+            _artistService.UpdateArtistByName(updateArtist);
+
+            _artistRepositoryMock.Verify(a => a.UpdateArtistByName(updateArtist), Times.Once);
+
+        }
+
+
+        [Test]
+        public void UpdateArtist_ReturnsUpdatedArtist()
+        {
+            var updateArtist = new UpdateArtistWrapper()
+            {
+                Id = 2,
+                Name = "Amy Jade Winehouse"
+            };
+
+            var updatedArtist = new Artist()
+            {
+                Id = 2,
+                Name = "Amy Jade Winehouse"
+            };
+
+            _artistRepositoryMock.Setup(a => a.UpdateArtistByName(updateArtist)).Returns(updatedArtist);
+
+            var result = _artistService.UpdateArtistByName(updateArtist);
+
+
+            result.Name.Should().Be("Amy Jade Winehouse"); 
         }
 
 

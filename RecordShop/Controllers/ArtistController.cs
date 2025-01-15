@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RecordShop.DTO;
 using RecordShop.Entities;
 using RecordShop.Services;
+using RecordShop.Wrappers;
 
 namespace RecordShop.Controllers
 {
@@ -50,21 +50,16 @@ namespace RecordShop.Controllers
         }
 
         [HttpPut]
-        public IActionResult PutArtist(UpdateArtistDTO artist)
+        public IActionResult PutArtist(UpdateArtistWrapper artist)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            if (artist.Name != "")
-            {
-                var updatedArtist = _artistService.UpdateArtistByName(artist);
-                return Ok(updatedArtist);
-            }
-
-            return NoContent();
-
+            var updatedArtist = _artistService.UpdateArtistByName(artist);
+            return Ok(updatedArtist);
+        
         }
 
         [HttpDelete("{id}")]
