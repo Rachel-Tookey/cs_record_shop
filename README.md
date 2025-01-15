@@ -25,7 +25,7 @@ flowchart LR;
 | GetArtists()  |  "api/artist"   | Get | - |
 | AddArtist(Artist artist) |  "api/artist"   |  Post | Post body: `{ "name" : "ACDC", "albums" : [] }` |
 | GetArtistById(int id) | "api/artist/<id>" | Get | Param: "api/artist/2" |
-| PutArtist(UpdateArtistWrapper artist) | "api/artist" | Put | Post body `{ "id" : "2", "name" : "Amy Jade Winehouse" }` | 
+| PutArtist(UpdateArtist artist) | "api/artist" | Put | Post body `{ "id" : "2", "name" : "Amy Jade Winehouse" }` | 
 | DeleteArtist(int id) | "api/artist/<id> | Delete|  Param: "api/artist/2" |
 
 
