@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RecordShop.Wrappers
+namespace RecordShop.UserInputObjects
 {
-    public class UpdateArtistWrapper
+    public class UpdateArtist
     {
         [Required]
         public int Id { get; set; }
 
-        [LengthAttribute(4, Int32.MaxValue)]
+        [Length(4, int.MaxValue)]
         public string Name { get; set; }
 
     }

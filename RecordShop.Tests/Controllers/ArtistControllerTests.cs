@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
 using RecordShop.DTO;
-using RecordShop.Wrappers;
 
 namespace RecordShop.Tests.Controllers
 {
@@ -132,7 +131,7 @@ namespace RecordShop.Tests.Controllers
         public void PutArtistInvalidInput_ReturnsBadRequest()
         {
 
-            var updateArtist = new UpdateArtistWrapper()
+            var updateArtist = new UpdateArtist()
             {
                 Id = 2,
                 Name = "Amy Jade Winehouse"
@@ -150,7 +149,7 @@ namespace RecordShop.Tests.Controllers
         public void PutArtist_ReturnsUpdatedArtist()
         {
 
-            var updateArtist = new UpdateArtistWrapper()
+            var updateArtist = new UpdateArtist()
             {
                 Id = 2,
                 Name = "Amy Jade Winehouse"
