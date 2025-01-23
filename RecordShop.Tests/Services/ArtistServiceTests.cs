@@ -11,7 +11,6 @@ using FluentAssertions;
 using RecordShop.DTO;
 using Microsoft.AspNetCore.Mvc;
 using RecordShop.Controllers;
-using RecordShop.Wrappers;
 namespace RecordShop.Tests.Services
 {
     public class ArtistServiceTests
@@ -118,7 +117,7 @@ namespace RecordShop.Tests.Services
         [Test]
         public void UpdateArtist_CallsUpdateOnce()
         {
-            var updateArtist = new UpdateArtistWrapper()
+            var updateArtist = new UpdateArtist()
             {
                 Id = 2,
                 Name = "Amy Jade Winehouse"
@@ -135,7 +134,7 @@ namespace RecordShop.Tests.Services
         [Test]
         public void UpdateArtist_ReturnsUpdatedArtist()
         {
-            var updateArtist = new UpdateArtistWrapper()
+            var updateArtist = new UpdateArtist()
             {
                 Id = 2,
                 Name = "Amy Jade Winehouse"

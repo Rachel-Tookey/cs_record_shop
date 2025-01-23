@@ -6,6 +6,7 @@ using RecordShop.HealthChecks;
 using RecordShop.Repository;
 using RecordShop.Services;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using System.Text.Json.Serialization;
 
 namespace RecordShop
 {
@@ -13,12 +14,14 @@ namespace RecordShop
     {
         public static void Main(string[] args)
         {
+            string Environment = "DEVELOPMENT";
+
             var builder = WebApplication.CreateBuilder(args);
 
 
-            if (builder.Environment.IsDevelopment())
+            if (Environment == "DEVELOPMENT")
             {
-                string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+                string connectionString = builder.Configuration.GetConnectionString(Environment);
                 var sqliteConnection = new SqliteConnection(connectionString);
                 sqliteConnection.Open();
 
@@ -27,15 +30,15 @@ namespace RecordShop
                     options.UseSqlite(sqliteConnection);
                 });
             }
-            else if (builder.Environment.IsProduction())
+            else if (Environment == "PRODUCTION")
             {
-                string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-                builder.Services.AddDbContext<RecordShopContext>(options => options.UseSqlServer("DefaultConnection") );
+                string connectionString = builder.Configuration.GetConnectionString(Environment);
+                builder.Services.AddDbContext<RecordShopContext>(options => options.UseSqlServer(Environment));
             }
 
 
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
             builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
             builder.Services.AddScoped<IAlbumService, AlbumService>();
@@ -48,10 +51,8 @@ namespace RecordShop
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddHealthChecks().AddCheck("api_check",
-                new RecordShopHealthCheck("https://localhost:7278")
-                )
-                .AddCheck("Db-check", new SqlConnectionHealthCheck(builder.Configuration.GetConnectionString("DefaultConnection")),
+            builder.Services.AddHealthChecks() 
+                .AddCheck("Db-check", new SqlConnectionHealthCheck(builder.Configuration.GetConnectionString(Environment)),
                 HealthStatus.Unhealthy,
                 new string[] { "orderingdb" }); 
 

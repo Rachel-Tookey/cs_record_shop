@@ -5,7 +5,7 @@ using RecordShop.Data;
 using RecordShop.DTO;
 using RecordShop.Entities;
 using RecordShop.Repository;
-using RecordShop.Wrappers;
+using RecordShop.UserInputObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -108,7 +108,7 @@ namespace RecordShop.Tests.Repository
 
             beforeArtist.Name.Should().Be("Amy Winehouse");
 
-            var updateArtist = new UpdateArtistWrapper()
+            var updateArtist = new UpdateArtist()
             {
                 Id = 2,
                 Name = "Amy Jade Winehouse"

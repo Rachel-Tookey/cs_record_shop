@@ -1,6 +1,6 @@
 ﻿using RecordShop.Data;
 using RecordShop.Entities;
-using RecordShop.Wrappers;
+using RecordShop.UserInputObjects;
 
 namespace RecordShop.Repository
 {
@@ -10,7 +10,7 @@ namespace RecordShop.Repository
         public void AddArtist(Artist artist);
         public Artist FetchArtistById(int id);
         public bool ExistsById(int id);
-        public Artist UpdateArtistByName(UpdateArtistWrapper artistUpdate);
+        public Artist UpdateArtistByName(UpdateArtist artistUpdate);
         public void RemoveById(int id);
     }
 
@@ -47,7 +47,7 @@ namespace RecordShop.Repository
             return _recordShopContext.Artists.Where(a => a.Id == id).Any(); 
         }
 
-        public Artist UpdateArtistByName(UpdateArtistWrapper artistUpdate)
+        public Artist UpdateArtistByName(UpdateArtist artistUpdate)
         {
             var artistRecord = FetchArtistById(artistUpdate.Id);
             artistRecord.Name = artistUpdate.Name;

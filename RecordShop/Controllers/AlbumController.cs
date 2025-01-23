@@ -41,14 +41,13 @@ namespace RecordShop.Controllers
             newAlbum.ArtistId = albumDTO.ArtistId;
             newAlbum.Description = albumDTO.Description;
             newAlbum.ReleaseDate = albumDTO.ReleaseDate;
-
-            //if (newAlbum.Genres.Count > 0)
-            //{
-            //    foreach (var genre in newAlbum.Genres)
-            //    {
-            //        AlbumGenre newAB = new AlbumGenre() { Album = newAlbum, Genre = genre }; 
-            //    }
-            //}
+            if (newAlbum.Genres.Count > 0)
+            {
+                foreach (var genre in newAlbum.Genres)
+                {
+                    AlbumGenre newAB = new AlbumGenre() { Album = newAlbum, Genre = genre };
+                }
+            }
 
             _albumService.AddAlbum(newAlbum);
             

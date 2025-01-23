@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RecordShop.Entities;
 using RecordShop.Services;
-using RecordShop.Wrappers;
+using RecordShop.UserInputObjects;
 
 namespace RecordShop.Controllers
 {
@@ -27,13 +27,14 @@ namespace RecordShop.Controllers
 
 
         [HttpPost(Name = "AddArtist")]
-        public IActionResult AddArtist(Artist artist)
+        public IActionResult AddArtist(ArtistDTO artist)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            _artistService.AddArtist(artist);
+            Artist newArtist = new Artist() { Name = artist.Name } ;
+            _artistService.AddArtist(newArtist);
             return Created("/artists", "artist added");
         }
 
@@ -50,7 +51,7 @@ namespace RecordShop.Controllers
         }
 
         [HttpPut]
-        public IActionResult PutArtist(UpdateArtistWrapper artist)
+        public IActionResult PutArtist(UpdateArtist artist)
         {
             if (!ModelState.IsValid)
             {
@@ -65,7 +66,6 @@ namespace RecordShop.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteArtist(int id)
         {
-
             if (!_artistService.ExistsById(id))
             {
                 return BadRequest("Id does not exist");

@@ -6,7 +6,6 @@ namespace RecordShop.Entities
     {
         public int Id { get; set; }
 
-        [Required]
         public string Name { get; set; }
 
         public int ArtistId { get; set; }
@@ -15,7 +14,6 @@ namespace RecordShop.Entities
 
         public string Description { get; set; }
 
-        [Required]
         public DateTime ReleaseDate { get; set; }
 
         public List<Genre> Genres { get; set; }
