@@ -14,31 +14,46 @@ namespace RecordShop
     {
         public static void Main(string[] args)
         {
-            string Environment = "DEVELOPMENT";
 
             var builder = WebApplication.CreateBuilder(args);
 
+            string connectionString = "";
 
-            if (Environment == "DEVELOPMENT")
+            if (builder.Environment.IsDevelopment())
             {
-                string connectionString = builder.Configuration.GetConnectionString(Environment);
+                connectionString = builder.Configuration.GetConnectionString("DEVELOPMENT");
+                
                 var sqliteConnection = new SqliteConnection(connectionString);
+                
                 sqliteConnection.Open();
 
-                builder.Services.AddDbContext<RecordShopContext>(options =>
+
+                builder.Services.AddDbContext<RecordShopContextSqlite>(options =>
                 {
                     options.UseSqlite(sqliteConnection);
                 });
+
+                builder.Services.AddHealthChecks() 
+                    .AddCheck("Db-check", new SqlConnectionHealthCheck(connectionString),
+                    HealthStatus.Unhealthy,
+                    new string[] { "orderingdb" }); 
+
             }
-            else if (Environment == "PRODUCTION")
+            else if (builder.Environment.IsProduction())
             {
-                string connectionString = builder.Configuration.GetConnectionString(Environment);
-                builder.Services.AddDbContext<RecordShopContext>(options => options.UseSqlServer(Environment));
+
+                connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__RecordShopFinal");
+                builder.Services.AddDbContext<RecordShopContextSqlServer>(options => options.UseSqlServer(connectionString));
+
+                builder.Services.AddHealthChecks()
+                        .AddCheck("Db-check", new SqlConnectionHealthCheckProduction(connectionString),
+                        HealthStatus.Unhealthy,
+                        new string[] { "orderingdb" });
             }
 
 
 
-            builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+            builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
             builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
             builder.Services.AddScoped<IAlbumService, AlbumService>();
@@ -51,10 +66,7 @@ namespace RecordShop
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddHealthChecks() 
-                .AddCheck("Db-check", new SqlConnectionHealthCheck(builder.Configuration.GetConnectionString(Environment)),
-                HealthStatus.Unhealthy,
-                new string[] { "orderingdb" }); 
+
 
             var app = builder.Build();
 

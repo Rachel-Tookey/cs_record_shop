@@ -11,6 +11,8 @@ using FluentAssertions;
 using RecordShop.DTO;
 using Microsoft.AspNetCore.Mvc;
 using RecordShop.Controllers;
+using RecordShop.UserInputObjects;
+
 namespace RecordShop.Tests.Services
 {
     public class ArtistServiceTests

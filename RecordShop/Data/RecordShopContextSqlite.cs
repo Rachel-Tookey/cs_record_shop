@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace RecordShop.Data
 {
-    public class RecordShopContext : DbContext 
+    public class RecordShopContextSqlite : DbContext 
     {
 
         public DbSet<Album> Albums { get; set; }
@@ -15,10 +15,9 @@ namespace RecordShop.Data
 
         public DbSet<AlbumGenre> AlbumGenres { get; set; }
 
-        public RecordShopContext(DbContextOptions<RecordShopContext> options) : base(options) {
+        public RecordShopContextSqlite(DbContextOptions<RecordShopContextSqlite> options) : base(options) {
             Database.EnsureCreated();
-            
-        } 
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -26,8 +26,8 @@ namespace RecordShop.Tests.Repository
         {
             var connection = new SqliteConnection("Data Source=:memory:");
             connection.Open();
-            var options = new DbContextOptionsBuilder<RecordShopContext>().UseSqlite(connection).Options;
-            RecordShopContext context = new RecordShopContext(options);
+            var options = new DbContextOptionsBuilder<RecordShopContextSqlite>().UseSqlite(connection).Options;
+            RecordShopContextSqlite context = new RecordShopContextSqlite(options);
 
             context.Artists.Add(new Artist { Name = "Amy" });
 

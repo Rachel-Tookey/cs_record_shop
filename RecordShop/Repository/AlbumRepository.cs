@@ -15,9 +15,9 @@ namespace RecordShop.Repository
 
     public class AlbumRepository : IAlbumRepository
     {
-        private readonly RecordShopContext _recordShopContext;
+        private readonly RecordShopContextSqlServer _recordShopContext;
 
-        public AlbumRepository(RecordShopContext rsContext) { 
+        public AlbumRepository(RecordShopContextSqlServer rsContext) { 
             _recordShopContext = rsContext;
         
         }

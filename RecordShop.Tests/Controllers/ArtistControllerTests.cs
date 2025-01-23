@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
 using RecordShop.DTO;
+using RecordShop.UserInputObjects;
 
 namespace RecordShop.Tests.Controllers
 {
@@ -50,7 +51,7 @@ namespace RecordShop.Tests.Controllers
         [Test]
         public void PostArtist_ReturnsCreated()
         {
-            var artistToAdd = new Artist()
+            var artistToAdd = new ArtistDTO()
             {
                 Name = "Amy Winehouse"
             };
@@ -66,7 +67,7 @@ namespace RecordShop.Tests.Controllers
         [Test]
         public void PostInvalidArtist_ReturnsBadRequest()
         {
-            var artistToAdd = new Artist()
+            var artistToAdd = new ArtistDTO()
             {
                 Name = "Amy Winehouse" 
             };
@@ -83,7 +84,7 @@ namespace RecordShop.Tests.Controllers
         [Test]
         public void PostArtist_CallsServiceMethodOnce()
         {
-            var artistToAdd = new Artist()
+            var artistToAdd = new ArtistDTO()
             {
                 Name = "Amy Winehouse"
             };
@@ -91,7 +92,7 @@ namespace RecordShop.Tests.Controllers
 
             var result = (CreatedResult)_artistController.AddArtist(artistToAdd);
 
-            _artistServiceMock.Verify(a => a.AddArtist(artistToAdd), Times.Once());
+            _artistServiceMock.Verify(a => a.AddArtist(It.Is<Artist>(a => a.Name == "Amy Winehouse")), Times.Once());
         }
 
 

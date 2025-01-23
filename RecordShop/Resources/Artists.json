@@ -1,21 +1,26 @@
 ﻿[
   {
-    "id" :  1, 
-    "name": "Adele"
+    "id": 1,
+    "name": "Adele",
+    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/203px-Johann_Sebastian_Bach.jpg"
+
 
   },
   {
     "id": 2,
-    "name": "Amy Winehouse"
+    "name": "Amy Winehouse",
+    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/203px-Johann_Sebastian_Bach.jpg"
 
   },
   {
     "id": 3,
-    "name": "Jamiroquai"
+    "name": "Jamiroquai",
+    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/203px-Johann_Sebastian_Bach.jpg"
 
   },
   {
     "id": 4,
-    "name": "Sabrina Carpenter"
+    "name": "Sabrina Carpenter",
+    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/203px-Johann_Sebastian_Bach.jpg"
   }
 ]
