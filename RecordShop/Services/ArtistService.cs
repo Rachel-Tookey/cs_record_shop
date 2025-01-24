@@ -50,6 +50,7 @@ namespace RecordShop.Services
 
         public Artist UpdateArtistByName(UpdateArtist artistUpdate)
         {
+            Console.WriteLine("Called the service layer: " +  artistUpdate.ImageUrl);
             return _artistRepository.UpdateArtistByName(artistUpdate);
         }
 

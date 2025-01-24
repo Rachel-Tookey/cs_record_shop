@@ -53,6 +53,8 @@ namespace RecordShop.Repository
         {
             var artistRecord = FetchArtistById(artistUpdate.Id);
             artistRecord.Name = artistUpdate.Name;
+            artistRecord.ImageUrl = artistUpdate.ImageUrl;
+            artistRecord.YearsActive = artistUpdate.YearsActive;
             _recordShopContext.SaveChanges(); 
             return artistRecord;
         }
@@ -66,6 +68,7 @@ namespace RecordShop.Repository
 
 
     }
+
 
 
     public class ArtistRepositoryDev : IArtistRepository
@@ -104,6 +107,9 @@ namespace RecordShop.Repository
         {
             var artistRecord = FetchArtistById(artistUpdate.Id);
             artistRecord.Name = artistUpdate.Name;
+            artistRecord.ImageUrl = artistUpdate.ImageUrl;
+            Console.WriteLine("Artist record update?" + artistRecord.ImageUrl); 
+            artistRecord.YearsActive = artistUpdate.YearsActive;
             _recordShopContext.SaveChanges();
             return artistRecord;
         }

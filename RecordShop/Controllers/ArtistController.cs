@@ -42,6 +42,7 @@ namespace RecordShop.Controllers
         [HttpGet("{id}")]
         public IActionResult GetArtistById(int id)
         {
+            Console.WriteLine("id is :" + id);
             if (!_artistService.ExistsById(id))
             {
                 return BadRequest("Id does not exist"); 
@@ -57,8 +58,10 @@ namespace RecordShop.Controllers
             {
                 return BadRequest();
             }
+            Console.WriteLine("Called the controller:" + artist.ImageUrl);
 
             var updatedArtist = _artistService.UpdateArtistByName(artist);
+
             return Ok(updatedArtist);
         
         }
