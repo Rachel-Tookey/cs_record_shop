@@ -2,7 +2,7 @@
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using RecordShop.Data;
-using RecordShop.DTO;
+using RecordShop.UserInputObjects;
 using RecordShop.Entities;
 using RecordShop.Repository;
 using RecordShop.UserInputObjects;
@@ -16,7 +16,7 @@ namespace RecordShop.Tests.Repository
 {
     public class ArtistRepositoryTests
     {
-        private ArtistRepository _artistRepository;
+        private ArtistRepositoryDev _artistRepository;
 
 
         [SetUp]
@@ -27,7 +27,7 @@ namespace RecordShop.Tests.Repository
             var options = new DbContextOptionsBuilder<RecordShopContextSqlite>().UseSqlite(connection).Options;
             RecordShopContextSqlite context = new RecordShopContextSqlite(options);
 
-            _artistRepository = new ArtistRepository(context);
+            _artistRepository = new ArtistRepositoryDev(context);
         }
 
 
@@ -45,7 +45,7 @@ namespace RecordShop.Tests.Repository
         [Test]
         public void AddArtist_AddsArtist()
         {
-            var artistToAdd = new Artist { Name = "Amy" };
+            var artistToAdd = new Artist { Name = "Amy", ImageUrl = "www.fake.com" };
 
             _artistRepository.AddArtist(artistToAdd);
 

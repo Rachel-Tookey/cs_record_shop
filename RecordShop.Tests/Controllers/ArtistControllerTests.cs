@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
-using RecordShop.DTO;
 using RecordShop.UserInputObjects;
 
 namespace RecordShop.Tests.Controllers

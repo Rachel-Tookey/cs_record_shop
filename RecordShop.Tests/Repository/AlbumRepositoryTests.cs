@@ -18,7 +18,7 @@ namespace RecordShop.Tests.Repository
     public class AlbumRepositoryTests
     {
 
-        private AlbumRepository _albumRepository;
+        private AlbumRepositoryDev _albumRepository;
 
 
         [SetUp]
@@ -29,13 +29,13 @@ namespace RecordShop.Tests.Repository
             var options = new DbContextOptionsBuilder<RecordShopContextSqlite>().UseSqlite(connection).Options;
             RecordShopContextSqlite context = new RecordShopContextSqlite(options);
 
-            context.Artists.Add(new Artist { Name = "Amy" });
+            context.Artists.Add(new Artist { Name = "Amy", ImageUrl = "www.fake.com" });
 
             context.Albums.Add(new Album { Name = "Amy The Real Me", ArtistId = 1, Description = "Yo", ReleaseDate = new DateTime(2024, 01, 02) }); 
 
             context.SaveChanges();  
 
-            _albumRepository = new AlbumRepository(context);
+            _albumRepository = new AlbumRepositoryDev(context);
         }
 
 
@@ -44,8 +44,8 @@ namespace RecordShop.Tests.Repository
         {
             var result = _albumRepository.FetchAlbums();
 
-            result.Count.Should().Be(2);
-            result[1].Name.Should().Be("Amy The Real Me");
+            result.Count.Should().Be(3);
+            result[2].Name.Should().Be("Amy The Real Me");
 
         }
 
@@ -59,8 +59,8 @@ namespace RecordShop.Tests.Repository
 
             var result = _albumRepository.FetchAlbums();
 
-            result.Count.Should().Be(3);
-            result[2].Name.Should().Be("Amy The Real Me 2");
+            result.Count.Should().Be(4);
+            result[3].Name.Should().Be("Amy The Real Me 2");
 
         }
 

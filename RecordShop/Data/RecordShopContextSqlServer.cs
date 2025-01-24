@@ -14,7 +14,6 @@ namespace RecordShop.Data
 
         public DbSet<AlbumGenre> AlbumGenres { get; set; }
 
-
         public RecordShopContextSqlServer(DbContextOptions<RecordShopContextSqlServer> options) : base(options)
         {
         }

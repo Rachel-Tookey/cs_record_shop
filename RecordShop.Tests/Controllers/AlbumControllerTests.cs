@@ -4,6 +4,7 @@ using Moq;
 using RecordShop.Controllers;
 using RecordShop.Entities;
 using RecordShop.Services;
+using RecordShop.UserInputObjects;
 
 namespace RecordShop.Tests.Controllers
 {
@@ -49,13 +50,12 @@ namespace RecordShop.Tests.Controllers
         [Test]
         public void PostAlbum_ReturnsCreated()
         {
-            var albumToAdd = new DTO.AlbumDTO (){
+            var albumToAdd = new AlbumDTO(){
                  Name = "Back to Black",
                  ArtistId = 1,
                  Description = "Album of the Decade",
                  ReleaseDate = new DateTime(2005, 04, 12)
                 };
-
 
             var result = (CreatedResult)_albumController.AddAlbum(albumToAdd);
 
@@ -67,14 +67,12 @@ namespace RecordShop.Tests.Controllers
         [Test]
         public void PostAlbum_CallsServiceMethodOnce()
         {
-            var albumToAdd = new DTO.AlbumDTO()
-            {
+            var albumToAdd = new AlbumDTO(){
                 Name = "Back to Black",
                 ArtistId = 1,
                 Description = "Album of the Decade",
                 ReleaseDate = new DateTime(2005, 04, 12)
             };
-
 
             var result = (CreatedResult)_albumController.AddAlbum(albumToAdd);
 

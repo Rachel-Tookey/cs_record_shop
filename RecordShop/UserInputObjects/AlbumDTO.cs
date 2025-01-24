@@ -1,7 +1,7 @@
 ﻿using RecordShop.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace RecordShop.DTO
+namespace RecordShop.UserInputObjects
 {
     public class AlbumDTO
     {

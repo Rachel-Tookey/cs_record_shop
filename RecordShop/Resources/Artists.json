@@ -2,25 +2,28 @@
   {
     "id": 1,
     "name": "Adele",
-    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/203px-Johann_Sebastian_Bach.jpg"
-
+    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/203px-Johann_Sebastian_Bach.jpg",
+    "yearsactive": 5
 
   },
   {
     "id": 2,
     "name": "Amy Winehouse",
-    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/203px-Johann_Sebastian_Bach.jpg"
+    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/203px-Johann_Sebastian_Bach.jpg",
+    "yearsactive": 4
 
   },
   {
     "id": 3,
     "name": "Jamiroquai",
-    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/203px-Johann_Sebastian_Bach.jpg"
+    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/203px-Johann_Sebastian_Bach.jpg",
+    "yearsactive": 1
 
   },
   {
     "id": 4,
     "name": "Sabrina Carpenter",
-    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/203px-Johann_Sebastian_Bach.jpg"
+    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/203px-Johann_Sebastian_Bach.jpg",
+    "yearsactive": 10
   }
 ]

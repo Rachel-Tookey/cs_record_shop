@@ -8,13 +8,7 @@ namespace RecordShop.Data
     {
         public RecordShopContextSqlServer CreateDbContext(string[] args)
         {
-
-            var configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
-                .AddUserSecrets<RecordShopContextSqlServer>()
-                .Build();
-
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
-
+            var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__RecordShopFinal");
 
             var optionsBuilder = new DbContextOptionsBuilder<RecordShopContextSqlServer>();
             optionsBuilder.UseSqlServer(connectionString);
