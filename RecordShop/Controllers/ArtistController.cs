@@ -29,11 +29,12 @@ namespace RecordShop.Controllers
         [HttpPost(Name = "AddArtist")]
         public IActionResult AddArtist(ArtistDTO artist)
         {
+            Console.WriteLine("Now posting Artist");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            Artist newArtist = new Artist() { Name = artist.Name } ;
+            Artist newArtist = new Artist() { Name = artist.Name, ImageUrl = artist.ImageUrl, YearsActive = artist.YearsActive } ;
             _artistService.AddArtist(newArtist);
             return Created("/artists", "artist added");
         }

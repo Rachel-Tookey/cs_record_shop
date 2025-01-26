@@ -4,9 +4,9 @@ using System.Text.Json;
 
 namespace RecordShop.Data
 {
-    public class RecordShopContextSqlite : DbContext 
+    public class RecordShopContextSqlite : DbContext, IDbContext
     {
-
+        
         public DbSet<Album> Albums { get; set; }
 
         public DbSet<Artist> Artists { get; set; }

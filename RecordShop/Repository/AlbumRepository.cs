@@ -12,15 +12,17 @@ namespace RecordShop.Repository
 
     }
 
-    public class AlbumRepositoryProd : IAlbumRepository
+    public class AlbumRepository : IAlbumRepository
     {
-        private readonly RecordShopContextSqlServer _recordShopContext;
+        private readonly IDbContext _recordShopContext;
 
-        public AlbumRepositoryProd(RecordShopContextSqlServer rsContext)
+
+        public AlbumRepository(IDbContext rsContext)
         {
             _recordShopContext = rsContext;
 
         }
+
 
         public List<Album> FetchAlbums()
         {
@@ -34,28 +36,4 @@ namespace RecordShop.Repository
         }
     }
 
-
-
-    public class AlbumRepositoryDev : IAlbumRepository
-    {
-        private readonly RecordShopContextSqlite _recordShopContext;
-
-        public AlbumRepositoryDev(RecordShopContextSqlite rsContext) { 
-            _recordShopContext = rsContext;
-        
-        }
-
-        public List<Album> FetchAlbums()
-        {
-            return _recordShopContext.Albums.ToList();
-        }
-
-        public void AddAlbum(Album album)
-        {
-            _recordShopContext.Albums.Add(album);
-            _recordShopContext.SaveChanges();
-        }
-
-
-    }
 }

@@ -21,13 +21,13 @@ namespace RecordShop.Settings
             string connectionString = "Data Source=:memory:";
             var sqliteConnection = new SqliteConnection(connectionString);
             sqliteConnection.Open();
-            services.AddDbContext<RecordShopContextSqlite>(options =>  options.UseSqlite(sqliteConnection));
+            services.AddDbContext<IDbContext, RecordShopContextSqlite>(options =>  options.UseSqlite(sqliteConnection));
             services.AddHealthChecks().AddCheck("Db-check", new SqlConnectionHealthCheck(connectionString), HealthStatus.Unhealthy, new string[] { "orderingdb" });
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             services.AddScoped<IAlbumService, AlbumService>();
-            services.AddScoped<IAlbumRepository, AlbumRepositoryDev>();
+            services.AddScoped<IAlbumRepository, AlbumRepository>();
             services.AddScoped<IArtistRepository, ArtistRepository>();
             services.AddScoped<IArtistService, ArtistService>();
         }

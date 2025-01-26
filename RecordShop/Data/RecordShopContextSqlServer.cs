@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace RecordShop.Data
 {
-    public class RecordShopContextSqlServer : DbContext
+    public class RecordShopContextSqlServer : DbContext, IDbContext
     {
         public DbSet<Album> Albums { get; set; }
 

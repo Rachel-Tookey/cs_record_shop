@@ -19,9 +19,9 @@ namespace RecordShop.Repository
 
     public class ArtistRepository : IArtistRepository
     {
-        private readonly RecordShopContextSqlServer _recordShopContext;
+        private readonly IDbContext _recordShopContext;
 
-        public ArtistRepository(RecordShopContextSqlServer recordShopContext)
+        public ArtistRepository(IDbContext recordShopContext)
         {
             _recordShopContext = recordShopContext;
 
@@ -69,58 +69,4 @@ namespace RecordShop.Repository
 
     }
 
-
-
-    public class ArtistRepositoryDev : IArtistRepository
-    {
-        private readonly RecordShopContextSqlite _recordShopContext;
-
-        public ArtistRepositoryDev(RecordShopContextSqlite recordShopContext)
-        {
-            _recordShopContext = recordShopContext;
-
-        }
-
-        public List<Artist> FetchAllArtists()
-        {
-            return _recordShopContext.Artists.ToList();
-        }
-
-        public void AddArtist(Artist artist)
-        {
-            _recordShopContext.Artists.Add(artist);
-            _recordShopContext.SaveChanges();
-        }
-
-        public Artist FetchArtistById(int id)
-        {
-            return _recordShopContext.Artists.Where(a => a.Id == id).Include(a => a.Albums).First();
-
-        }
-
-        public bool ExistsById(int id)
-        {
-            return _recordShopContext.Artists.Where(a => a.Id == id).Any();
-        }
-
-        public Artist UpdateArtistByName(UpdateArtist artistUpdate)
-        {
-            var artistRecord = FetchArtistById(artistUpdate.Id);
-            artistRecord.Name = artistUpdate.Name;
-            artistRecord.ImageUrl = artistUpdate.ImageUrl;
-            Console.WriteLine("Artist record update?" + artistRecord.ImageUrl); 
-            artistRecord.YearsActive = artistUpdate.YearsActive;
-            _recordShopContext.SaveChanges();
-            return artistRecord;
-        }
-
-        public void RemoveById(int id)
-        {
-            var artistRecord = FetchArtistById(id);
-            _recordShopContext.Artists.Remove(artistRecord);
-            _recordShopContext.SaveChanges();
-        }
-
-
-    }
 }

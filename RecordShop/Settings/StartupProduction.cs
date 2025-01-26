@@ -18,9 +18,9 @@ namespace RecordShop.Settings
         {
 
             string connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__RecordShopFinal");  
-            services.AddDbContext<RecordShopContextSqlServer>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<IDbContext, RecordShopContextSqlServer>(options => options.UseSqlServer(connectionString));
             services.AddHealthChecks().AddCheck("Db-check", new SqlConnectionHealthCheckProduction(connectionString),HealthStatus.Unhealthy,new string[] { "orderingdb" });
-            services.AddScoped<IAlbumRepository, AlbumRepositoryProd>();
+            services.AddScoped<IAlbumRepository, AlbumRepository>();
             services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             services.AddScoped<IAlbumService, AlbumService>();
             services.AddScoped<IArtistRepository, ArtistRepository>();
