@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RecordShop.Entities;
-using System.Text.Json; 
+using System.Text.Json;
 
 namespace RecordShop.Data
 {
-    public class RecordShopContext : DbContext 
+    public class RecordShopContextSqlServer : DbContext, IDbContext
     {
-
         public DbSet<Album> Albums { get; set; }
 
         public DbSet<Artist> Artists { get; set; }
@@ -15,18 +14,14 @@ namespace RecordShop.Data
 
         public DbSet<AlbumGenre> AlbumGenres { get; set; }
 
-        public RecordShopContext(DbContextOptions<RecordShopContext> options) : base(options) {
-            Database.EnsureCreated();
-            
-        } 
+        public RecordShopContextSqlServer(DbContextOptions<RecordShopContextSqlServer> options) : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Artist>().Property(e => e.Id).ValueGeneratedOnAdd(); 
-            
-            modelBuilder.Entity<Artist>().HasData(JsonSerializer.Deserialize<List<Artist>>(File.ReadAllText("Resources/Artists.json")));
 
-            modelBuilder.Entity<Album>().Property(e => e.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Artist>().HasData(JsonSerializer.Deserialize<List<Artist>>(File.ReadAllText("Resources/Artists.json")));
 
             modelBuilder.Entity<Album>().HasData(JsonSerializer.Deserialize<List<Album>>(File.ReadAllText("Resources/Album.json")));
 
@@ -41,8 +36,6 @@ namespace RecordShop.Data
                 .WithMany(e => e.Genres)
                 .UsingEntity<AlbumGenre>();
         }
-
- 
 
     }
 }

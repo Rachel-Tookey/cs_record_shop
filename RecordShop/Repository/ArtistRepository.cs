@@ -1,4 +1,5 @@
-﻿using RecordShop.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using RecordShop.Data;
 using RecordShop.Entities;
 using RecordShop.UserInputObjects;
 
@@ -15,11 +16,12 @@ namespace RecordShop.Repository
     }
 
 
+
     public class ArtistRepository : IArtistRepository
     {
-        private readonly RecordShopContext _recordShopContext;
+        private readonly IDbContext _recordShopContext;
 
-        public ArtistRepository(RecordShopContext recordShopContext)
+        public ArtistRepository(IDbContext recordShopContext)
         {
             _recordShopContext = recordShopContext;
 
@@ -38,7 +40,7 @@ namespace RecordShop.Repository
 
         public Artist FetchArtistById(int id)
         {
-            return _recordShopContext.Artists.Where(a => a.Id == id).First(); 
+            return _recordShopContext.Artists.Where(a => a.Id == id).Include(a => a.Albums).First(); 
 
         }
 
@@ -51,6 +53,8 @@ namespace RecordShop.Repository
         {
             var artistRecord = FetchArtistById(artistUpdate.Id);
             artistRecord.Name = artistUpdate.Name;
+            artistRecord.ImageUrl = artistUpdate.ImageUrl;
+            artistRecord.YearsActive = artistUpdate.YearsActive;
             _recordShopContext.SaveChanges(); 
             return artistRecord;
         }
@@ -64,4 +68,5 @@ namespace RecordShop.Repository
 
 
     }
+
 }
