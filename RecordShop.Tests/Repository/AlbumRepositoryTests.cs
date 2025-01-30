@@ -18,7 +18,7 @@ namespace RecordShop.Tests.Repository
     public class AlbumRepositoryTests
     {
 
-        private AlbumRepositoryDev _albumRepository;
+        private AlbumRepository _albumRepository;
 
 
         [SetUp]
@@ -35,7 +35,7 @@ namespace RecordShop.Tests.Repository
 
             context.SaveChanges();  
 
-            _albumRepository = new AlbumRepositoryDev(context);
+            _albumRepository = new AlbumRepository(context);
         }
 
 

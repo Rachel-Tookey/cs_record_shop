@@ -5,18 +5,12 @@ using RecordShop.Data;
 using RecordShop.UserInputObjects;
 using RecordShop.Entities;
 using RecordShop.Repository;
-using RecordShop.UserInputObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RecordShop.Tests.Repository
 {
     public class ArtistRepositoryTests
     {
-        private ArtistRepositoryDev _artistRepository;
+        private ArtistRepository _artistRepository;
 
 
         [SetUp]
@@ -27,7 +21,7 @@ namespace RecordShop.Tests.Repository
             var options = new DbContextOptionsBuilder<RecordShopContextSqlite>().UseSqlite(connection).Options;
             RecordShopContextSqlite context = new RecordShopContextSqlite(options);
 
-            _artistRepository = new ArtistRepositoryDev(context);
+            _artistRepository = new ArtistRepository(context);
         }
 
 
