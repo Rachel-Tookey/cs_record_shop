@@ -26,9 +26,9 @@ namespace RecordShop.Settings
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-            services.AddScoped<IAlbumService, AlbumService>();
+            services.AddScoped<ISongService, SongService>();
             services.AddScoped<IArtistService, ArtistService>();
-            services.AddScoped<IAlbumRepository, AlbumRepository>();
+            services.AddScoped<ISongRepository, SongRepository>();
             services.AddScoped<IArtistRepository, ArtistRepository>();
         }
 

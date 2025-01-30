@@ -7,40 +7,40 @@ namespace RecordShop.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AlbumController : ControllerBase
+    public class SongController : ControllerBase
     {
 
-        private readonly IAlbumService _albumService; 
+        private readonly ISongService _songService; 
 
-        public AlbumController(IAlbumService albumService)
+        public SongController(ISongService songService)
         {
-            _albumService = albumService;
+            _songService = songService;
         }
 
 
-        [HttpGet(Name = "GetAlbums")]
+        [HttpGet(Name = "GetSongs")]
         public IActionResult GetAlbums()
         {
-            var albums = _albumService.GetAlbums();
+            var albums = _songService.GetSongs();
             return Ok(albums);
         }
 
 
 
-        [HttpPost(Name = "AddAlbums")]
-        public IActionResult AddAlbum(AlbumDTO albumDTO)
+        [HttpPost(Name = "AddSongs")]
+        public IActionResult AddSong(SongDTO songDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            Album newAlbum = new Album();
+            Song newSong = new Song();
 
-            newAlbum.Name = albumDTO.Name;
-            newAlbum.ArtistId = albumDTO.ArtistId;
-            newAlbum.Description = albumDTO.Description;
-            newAlbum.ReleaseDate = albumDTO.ReleaseDate;
+            newSong.Name = songDto.Name;
+            newSong.ArtistId = songDto.ArtistId;
+            newSong.Description = songDto.Description;
+            newSong.ReleaseDate = songDto.ReleaseDate;
 
             //if (newAlbum.Genres.Count > 0)
             //{
@@ -50,7 +50,7 @@ namespace RecordShop.Controllers
             //    }
             //}
 
-            _albumService.AddAlbum(newAlbum);
+            _songService.AddSong(newSong);
             
             return Created("/Albums", "Album added");
         }

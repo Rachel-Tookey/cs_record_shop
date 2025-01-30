@@ -2,7 +2,7 @@
 
 namespace RecordShop.Entities
 {
-    public class Album
+    public class Song
     {
         public int Id { get; set; }
 
@@ -16,6 +16,8 @@ namespace RecordShop.Entities
 
         public DateTime ReleaseDate { get; set; }
 
+        public string SpotifyUrl { get; set; }
+        
         public List<Genre> Genres { get; set; }
 
 
