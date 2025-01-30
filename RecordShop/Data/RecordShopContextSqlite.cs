@@ -27,7 +27,7 @@ namespace RecordShop.Data
 
             modelBuilder.Entity<Song>().Property(e => e.Id).ValueGeneratedOnAdd();
 
-            modelBuilder.Entity<Song>().HasData(JsonSerializer.Deserialize<List<Song>>(File.ReadAllText("Resources/Songsjson")));
+            modelBuilder.Entity<Song>().HasData(JsonSerializer.Deserialize<List<Song>>(File.ReadAllText("Resources/Songs.json")));
 
 
             modelBuilder.Entity<Song>()

@@ -4,7 +4,7 @@
     "Name": "Back to Black",
     "ArtistId": 2,
     "Description": "Good song",
-    "SpotifyURL" : "https://open.spotify.com/embed/track/30FURVTCpbKyykjSEQzGkH?utm_source=generator",
+    "SpotifyUrl" : "https://open.spotify.com/embed/track/30FURVTCpbKyykjSEQzGkH?utm_source=generator",
     "DateTime": "2025-06-03"
   },
   {
@@ -12,7 +12,7 @@
     "Name": "Hello",
     "ArtistId": 1,
     "Description": "Goodbye",
-    "SpotifyURL" : "https://open.spotify.com/embed/track/1Yk0cQdMLx5RzzFTYwmuld?utm_source=generator&theme=0",
+    "SpotifyUrl" : "https://open.spotify.com/embed/track/1Yk0cQdMLx5RzzFTYwmuld?utm_source=generator&theme=0",
     "DateTime": "2020-06-03"
   }
 ]
