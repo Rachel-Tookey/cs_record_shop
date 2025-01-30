@@ -23,7 +23,7 @@ namespace RecordShop.Data
 
             modelBuilder.Entity<Artist>().HasData(JsonSerializer.Deserialize<List<Artist>>(File.ReadAllText("Resources/Artists.json")));
 
-            modelBuilder.Entity<Song>().HasData(JsonSerializer.Deserialize<List<Song>>(File.ReadAllText("Resources/Album.json")));
+            modelBuilder.Entity<Song>().HasData(JsonSerializer.Deserialize<List<Song>>(File.ReadAllText("Resources/Songs.json")));
 
 
             modelBuilder.Entity<Song>()
