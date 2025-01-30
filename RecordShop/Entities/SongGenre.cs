@@ -1,12 +1,12 @@
 ﻿namespace RecordShop.Entities
 {
-    public class AlbumGenre
+    public class SongGenre
     {
         public int Id { get; set; }
 
-        public int AlbumId { get; set; }
+        public int SongId { get; set; }
 
-        public Album Album { get; set; }
+        public Song Song { get; set; }
 
         public int GenreId { get; set; }
 

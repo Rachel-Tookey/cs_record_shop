@@ -21,10 +21,10 @@ namespace RecordShop.Settings
             services.AddDbContext<IDbContext, RecordShopContextSqlServer>(options => options.UseSqlServer(connectionString));
             services.AddHealthChecks().AddCheck("Db-check", new SqlConnectionHealthCheckProduction(connectionString),HealthStatus.Unhealthy,new string[] { "orderingdb" });
             services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-            services.AddScoped<IAlbumService, AlbumService>();
+            services.AddScoped<ISongService, SongService>();
             services.AddScoped<IArtistService, ArtistService>();
             services.AddScoped<IArtistRepository, ArtistRepository>();
-            services.AddScoped<IAlbumRepository, AlbumRepository>();
+            services.AddScoped<ISongRepository, SongRepository>();
         }
 
 

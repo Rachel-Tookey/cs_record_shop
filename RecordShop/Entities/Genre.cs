@@ -6,6 +6,6 @@
 
         public string Name { get; set; }
 
-        public List<Album> Albums { get; set; }
+        public List<Song> Albums { get; set; }
     }
 }

@@ -21,6 +21,7 @@ namespace RecordShop.Controllers
         [HttpGet(Name = "GetArtists")]
         public IActionResult GetArtists()
         {
+            Console.WriteLine("Get artists controller called");
             var artists = _artistService.GetAllArtists();
             return Ok(artists);
         }
