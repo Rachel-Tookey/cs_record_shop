@@ -26,7 +26,7 @@ namespace RecordShop.Repository
 
         public List<Song> FetchSongs()
         {
-            return _recordShopContext.Songs.ToList();
+            return _recordShopContext.Songs.Include(s => s.Artist).ToList();
         }
 
         public void AddSong(Song song)
