@@ -29,7 +29,7 @@ namespace RecordShop.Repository
 
         public List<Artist> FetchAllArtists()
         {
-            return _recordShopContext.Artists.ToList();
+            return _recordShopContext.Artists.Include(a => a.Songs).ToList();
         }
 
         public void AddArtist(Artist artist)

@@ -38,5 +38,38 @@
     "Description": "Song of the Decade",
     "SpotifyUrl": "https://open.spotify.com/embed/track/4ltqfN12ohaVZdM6C45gMg?utm_source=generator&theme=0",
     "DateTime": "2021-06-03"
+  },
+  {
+    "Id": 6,
+    "Name": "Eusexua",
+    "ArtistId": 8,
+    "Description": "A song",
+    "SpotifyUrl": "https://open.spotify.com/embed/track/64epDx3JBqZd9dpG9aiVpq?utm_source=generator&theme=0",
+    "DateTime": "2016-06-03"
+  },
+  {
+    "Id": 7,
+    "Name": "I've Seen Footage",
+    "ArtistId": 7,
+    "Description": "A good song",
+    "SpotifyUrl": "https://open.spotify.com/embed/track/7nCONy10IHp7XD3oYZ0lcx?utm_source=generator&theme=0",
+    "DateTime": "2017-06-03"
+  },
+  {
+    "Id": 8,
+    "Name": "Aquamarine / Arcamarine",
+    "ArtistId": 6,
+    "Description": "Another song",
+    "SpotifyUrl": "https://open.spotify.com/embed/track/5Ay8JjpPx5LUauY9G0FMuV?utm_source=generator&theme=0",
+    "DateTime": "2013-06-03"
+  },
+  {
+    "Id": 9,
+    "Name": "Limerence",
+    "ArtistId": 5,
+    "Description": "Super song",
+    "SpotifyUrl": "https://open.spotify.com/embed/track/2wiV5iKq5F5A0KUee4OrlK?utm_source=generator&theme=0",
+    "DateTime": "2012-06-03"
   }
 ]
+
