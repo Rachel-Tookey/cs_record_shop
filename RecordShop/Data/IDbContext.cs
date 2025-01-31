@@ -11,7 +11,7 @@ namespace RecordShop.Data
 
         public DbSet<Genre> Genres { get; }
 
-        public DbSet<SongGenre> SongGenres { get; }
+        public DbSet<ArtistGenre> SongGenres { get; }
 
         int SaveChanges();
 

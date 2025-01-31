@@ -18,7 +18,6 @@ namespace RecordShop.Entities
 
         public string SpotifyUrl { get; set; }
         
-        public List<Genre> Genres { get; set; }
 
 
     }
