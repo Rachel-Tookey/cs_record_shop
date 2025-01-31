@@ -26,19 +26,14 @@ namespace RecordShop.Tests.Services
         public void GetSongs_ReturnsSongs()
         {
             List<Song> songList = new List<Song>() {
-
-                new Song (){
-                 Name = "Back to Black",
-                 ArtistId = 1,
-                 Description = "Album of the Decade",
-                 ReleaseDate = new DateTime(2005, 04, 12)
-                }
+                        new Song("Back to Black", 
+                        1, "Song of the Decade", 
+                        new DateTime(2005, 04, 12), 
+                        "www.spotifylink.com")
             };
 
             _albumRepositoryMock.Setup(album => album.FetchSongs()).Returns(songList);
-
             var result = _songService.GetSongs();
-
             result.Should().BeEquivalentTo(songList);
 
         }
@@ -47,17 +42,8 @@ namespace RecordShop.Tests.Services
         [Test]
         public void PostSong_CallsServiceMethodOnce()
         {
-            var songToAdd = new Song()
-            {
-                Name = "Back to Black",
-                ArtistId = 1,
-                Description = "Album of the Decade",
-                ReleaseDate = new DateTime(2005, 04, 12)
-            };
-
-
+            var songToAdd = new Song("Back to Black", 1, "Song of the Decade", new DateTime(2005, 04, 12), "www.spotifylink.com");
             _songService.AddSong(songToAdd);
-
             _albumRepositoryMock.Verify(a => a.AddSong(songToAdd), Times.Once());
         }
 

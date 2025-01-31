@@ -7,7 +7,6 @@ namespace RecordShop.Repository
     public interface ISongRepository
     {
         public List<Song> FetchSongs(); 
-
         public void AddSong(Song song);  
 
     }
@@ -20,7 +19,6 @@ namespace RecordShop.Repository
         public SongRepository(IDbContext rsContext)
         {
             _recordShopContext = rsContext;
-
         }
 
 

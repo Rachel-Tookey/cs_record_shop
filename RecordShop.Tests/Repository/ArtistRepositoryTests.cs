@@ -30,7 +30,7 @@ namespace RecordShop.Tests.Repository
         {
             var result = _artistRepository.FetchAllArtists();
 
-            result.Count.Should().Be(4);
+            result.Count.Should().Be(8);
             result[0].Name.Should().Be("Adele");
 
         }
@@ -45,8 +45,8 @@ namespace RecordShop.Tests.Repository
 
             var result = _artistRepository.FetchAllArtists();
 
-            result.Count.Should().Be(5);
-            result[4].Name.Should().Be("Amy");
+            result.Count.Should().Be(9);
+            result[8].Name.Should().Be("Amy");
 
         }
 
@@ -105,7 +105,8 @@ namespace RecordShop.Tests.Repository
             var updateArtist = new UpdateArtist()
             {
                 Id = 2,
-                Name = "Amy Jade Winehouse"
+                Name = "Amy Jade Winehouse",
+                ImageUrl = "www.fake.com"
             };
 
             var afterArtist = _artistRepository.UpdateArtistByName(updateArtist);

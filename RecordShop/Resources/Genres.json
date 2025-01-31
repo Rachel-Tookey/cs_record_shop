@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Blues"
+  },
+  {
+    "id": 2,
+    "name": "Drone"
+  },
+  {
+    "id": 3,
+    "name": "Punk"
+  },
+  {
+    "id": 4,
+    "name": "Rock"
+  },
+  {
+    "id": 5,
+    "name": "Hip Hop"
+  },
+  {
+    "id": 6,
+    "name": "Jazz Infusion"
+  },
+  {
+    "id": 7,
+    "name": "Soul"
+  }
+]

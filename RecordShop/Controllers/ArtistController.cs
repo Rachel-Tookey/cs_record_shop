@@ -21,7 +21,6 @@ namespace RecordShop.Controllers
         [HttpGet(Name = "GetArtists")]
         public IActionResult GetArtists()
         {
-            Console.WriteLine("Get artists controller called");
             var artists = _artistService.GetAllArtists();
             return Ok(artists);
         }
@@ -30,12 +29,8 @@ namespace RecordShop.Controllers
         [HttpPost(Name = "AddArtist")]
         public IActionResult AddArtist(ArtistDTO artist)
         {
-            Console.WriteLine("Now posting Artist");
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            Artist newArtist = new Artist() { Name = artist.Name, ImageUrl = artist.ImageUrl, YearsActive = artist.YearsActive } ;
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            Artist newArtist = new(artist); 
             _artistService.AddArtist(newArtist);
             return Created("/artists", "artist added");
         }
@@ -44,11 +39,7 @@ namespace RecordShop.Controllers
         [HttpGet("{id}")]
         public IActionResult GetArtistById(int id)
         {
-            Console.WriteLine("id is :" + id);
-            if (!_artistService.ExistsById(id))
-            {
-                return BadRequest("Id does not exist"); 
-            }
+            if (!_artistService.ExistsById(id)) return BadRequest("Id does not exist"); 
             var artist = _artistService.GetArtistById(id);
             return Ok(artist);
         }
@@ -56,14 +47,8 @@ namespace RecordShop.Controllers
         [HttpPut]
         public IActionResult PutArtist(UpdateArtist artist)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            Console.WriteLine("Called the controller:" + artist.ImageUrl);
-
+            if (!ModelState.IsValid) return BadRequest();
             var updatedArtist = _artistService.UpdateArtistByName(artist);
-
             return Ok(updatedArtist);
         
         }
@@ -71,10 +56,7 @@ namespace RecordShop.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteArtist(int id)
         {
-            if (!_artistService.ExistsById(id))
-            {
-                return BadRequest("Id does not exist");
-            }
+            if (!_artistService.ExistsById(id)) return BadRequest("Id does not exist");
             _artistService.DeleteById(id);
             return NoContent();
         }

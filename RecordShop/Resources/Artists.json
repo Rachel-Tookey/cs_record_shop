@@ -2,28 +2,52 @@
   {
     "id": 1,
     "name": "Adele",
-    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/203px-Johann_Sebastian_Bach.jpg",
-    "yearsactive": 5
+    "imageurl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.adele.com%2F&psig=AOvVaw2FDHZH8Ap1BIk8dcbMi2E6&ust=1738438385791000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPDzhejZoIsDFQAAAAAdAAAAABAE",
+    "yearsactive": 12
 
   },
   {
     "id": 2,
     "name": "Amy Winehouse",
-    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/203px-Johann_Sebastian_Bach.jpg",
-    "yearsactive": 4
+    "imageurl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.artphotolimited.com%2Fuk-en%2Ffine-art-photography%2Fconcert-and-music%2Fpop-music%2Fenglish-pop-music%2Famy-winehouse%2Fphoto%2Fimago-images%2Famy-winehouse-2007-2&psig=AOvVaw3gAL6VZeWAXtFIwCEXhlIM&ust=1738438421472000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPiwn_nZoIsDFQAAAAAdAAAAABAW",
+    "yearsactive": 5
 
   },
   {
     "id": 3,
-    "name": "Jamiroquai",
-    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/203px-Johann_Sebastian_Bach.jpg",
-    "yearsactive": 1
+    "name": "Brian Eno",
+    "imageurl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.brian-eno.net%2Fabout%2F&psig=AOvVaw1iPzo9nHMZz0LNxIQ4xoHR&ust=1738438457983000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPjcjYjaoIsDFQAAAAAdAAAAABAE",
+    "yearsactive": 10
 
   },
   {
     "id": 4,
-    "name": "Sabrina Carpenter",
-    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Johann_Sebastian_Bach.jpg/203px-Johann_Sebastian_Bach.jpg",
+    "name": "Ethel Cain",
+    "imageurl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vogue.com%2Farticle%2Fethel-cain-hayden-anhedonia-edwardian-fashion-interview&psig=AOvVaw2vp04R7myymHqLFGbgLYEO&ust=1738438494007000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNC_9pjaoIsDFQAAAAAdAAAAABAE",
+    "yearsactive": 3
+  },
+  {
+    "id": 5,
+    "name": "Yves Tumor",
+    "imageurl": "https://static.stereogum.com/uploads/2018/09/Noid_packshot_1400-1-1536775591.jpg",
     "yearsactive": 10
+  },
+  {
+    "id": 6,
+    "name": "Arca",
+    "imageurl" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs7BSo6YMJ9J3NI0BR86v9dzob4NjLT2-2kw&s",
+    "yearsactive": 11
+  },
+  {
+    "id": 7,
+    "name": "Death Grips",
+    "imageurl": "https://fastly-s3.allmusic.com/artist/mn0002741208/400/vt7qAAk7VNvMCL9Dqjr7QwSijaXJlYnq0St31qpAJWo=.jpg",
+    "yearsactive": 14
+  },
+  {
+    "id": 8,
+    "name": "FKA twigs",
+    "imageurl": "https://media.vogue.co.uk/photos/6639db5f6b50726a74982ca8/2:3/w_2560%2Cc_limit/GettyImages-2151796485.jpg",
+    "yearsactive": 12
   }
 ]

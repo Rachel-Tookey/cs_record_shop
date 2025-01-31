@@ -35,10 +35,7 @@ namespace RecordShop.Tests.Services
         public void GetAlbums_ReturnsAlbums()
         {
             List<Artist> artistList = new List<Artist>() {
-
-                new Artist (){
-                 Name = "Amy Winehouse"
-                }
+                new Artist ("Amy Winehouse", "imageurl", 4)
             };
 
             _artistRepositoryMock.Setup(a => a.FetchAllArtists()).Returns(artistList);
@@ -53,12 +50,8 @@ namespace RecordShop.Tests.Services
         [Test]
         public void PostAlbum_CallsServiceMethodOnce()
         {
-            var artistToAdd = new Artist()
-            {
-                Name = "Amy Winehouse"
-            };
-
-
+            var artistToAdd = new Artist("Amy Winehouse", "imageurl", 4);
+            
             _artistService.AddArtist(artistToAdd);
 
             _artistRepositoryMock.Verify(a => a.AddArtist(artistToAdd), Times.Once());
@@ -68,11 +61,7 @@ namespace RecordShop.Tests.Services
         [Test]
         public void GetArtistById_ReturnsArtist()
         {
-            var artistToAdd = new Artist()
-            {
-                Id = 1, 
-                Name = "Amy Winehouse"
-            };
+            var artistToAdd = new Artist("Amy Winehouse", "imageurl", 4) { Id = 1 }; 
 
             _artistRepositoryMock.Setup(a => a.FetchArtistById(1)).Returns(artistToAdd);
 
@@ -142,12 +131,9 @@ namespace RecordShop.Tests.Services
                 Name = "Amy Jade Winehouse"
             };
 
-            var updatedArtist = new Artist()
-            {
-                Id = 2,
-                Name = "Amy Jade Winehouse"
-            };
+            var updatedArtist = new Artist("Amy Jade Winehouse", "imageurl", 4) { Id = 2 }; 
 
+            
             _artistRepositoryMock.Setup(a => a.UpdateArtistByName(updateArtist)).Returns(updatedArtist);
 
             var result = _artistService.UpdateArtistByName(updateArtist);

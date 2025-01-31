@@ -14,5 +14,29 @@
     "Description": "Goodbye",
     "SpotifyUrl" : "https://open.spotify.com/embed/track/1Yk0cQdMLx5RzzFTYwmuld?utm_source=generator&theme=0",
     "DateTime": "2020-06-03"
+  },
+  {
+    "Id": 3,
+    "Name": "Tears Dry on their Own",
+    "ArtistId": 2,
+    "Description": "Good song",
+    "SpotifyUrl": "https://open.spotify.com/embed/track/6yLX8QnxlnEqZfs3YKCfjF?utm_source=generator&theme=0",
+    "DateTime": "2010-06-03"
+  },
+  {
+    "Id": 4,
+    "Name": "An Ending",
+    "ArtistId": 3,
+    "Description": "Mellow",
+    "SpotifyUrl" : "https://open.spotify.com/embed/track/1vgSaC0BPlL6LEm4Xsx59J?utm_source=generator&theme=0",
+    "DateTime": "2015-06-03"
+  },
+  {
+    "Id": 5,
+    "Name": "American Teenager",
+    "ArtistId": 4,
+    "Description": "Song of the Decade",
+    "SpotifyUrl": "https://open.spotify.com/embed/track/4ltqfN12ohaVZdM6C45gMg?utm_source=generator&theme=0",
+    "DateTime": "2021-06-03"
   }
 ]

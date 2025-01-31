@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "artistid": 2,
+    "genreid": 1
+  },
+  {
+    "id": 2,
+    "artistid": 2,
+    "genreid": 6
+  },
+  {
+    "id": 3,
+    "artistid": 3,
+    "genreid": 2
+  },
+  {
+    "id": 4,
+    "artistid": 1,
+    "genreid": 7
+  },
+  {
+    "id": 5,
+    "artistid": 4,
+    "genreid": 2
+  },
+  {
+    "id": 6,
+    "artistid": 4,
+    "genreid": 3
+  },
+  {
+    "id": 7,
+    "artistid": 1,
+    "genreid": 7
+  }
+]
