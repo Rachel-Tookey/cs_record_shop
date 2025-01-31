@@ -32,11 +32,11 @@ namespace RecordShop.Data
 
             modelBuilder.Entity<Song>()
                 .HasMany(e => e.Genres)
-                .WithMany(e => e.Albums)
+                .WithMany(e => e.Songs)
                 .UsingEntity<SongGenre>();
 
             modelBuilder.Entity<Genre>()
-                .HasMany(e => e.Albums)
+                .HasMany(e => e.Songs)
                 .WithMany(e => e.Genres)
                 .UsingEntity<SongGenre>();
         }
