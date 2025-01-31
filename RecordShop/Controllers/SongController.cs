@@ -30,17 +30,9 @@ namespace RecordShop.Controllers
         [HttpPost(Name = "AddSongs")]
         public IActionResult AddSong(SongDTO songDto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            Song newSong = new Song();
-
-            newSong.Name = songDto.Name;
-            newSong.ArtistId = songDto.ArtistId;
-            newSong.Description = songDto.Description;
-            newSong.ReleaseDate = songDto.ReleaseDate;
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            Song newSong = new (songDto);
+            _songService.AddSong(newSong);
 
             //if (newAlbum.Genres.Count > 0)
             //{
@@ -50,7 +42,6 @@ namespace RecordShop.Controllers
             //    }
             //}
 
-            _songService.AddSong(newSong);
             
             return Created("/Albums", "Album added");
         }

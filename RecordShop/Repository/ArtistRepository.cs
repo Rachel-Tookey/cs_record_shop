@@ -29,7 +29,6 @@ namespace RecordShop.Repository
 
         public List<Artist> FetchAllArtists()
         {
-            Console.WriteLine("Fetch all artists controller called");
             return _recordShopContext.Artists.ToList();
         }
 

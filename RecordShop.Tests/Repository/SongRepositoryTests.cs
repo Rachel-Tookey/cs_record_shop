@@ -20,13 +20,9 @@ namespace RecordShop.Tests.Repository
             connection.Open();
             var options = new DbContextOptionsBuilder<RecordShopContextSqlite>().UseSqlite(connection).Options;
             RecordShopContextSqlite context = new RecordShopContextSqlite(options);
-
-            context.Artists.Add(new Artist { Name = "Amy", ImageUrl = "www.fake.com" });
-
-            context.Songs.Add(new Song { Name = "Amy The Real Me", ArtistId = 1, Description = "Yo", SpotifyUrl = "www.song.com", ReleaseDate = new DateTime(2024, 01, 02) }); 
-
+            context.Artists.Add( new Artist("Amy Winehouse", "imageurl", 4)); 
+            context.Songs.Add(new Song("Amy The Real Me",  1, "Good", new DateTime(2024, 01, 02), "www.song.com")); 
             context.SaveChanges();  
-
             _songRepository = new SongRepository(context);
         }
 
@@ -35,32 +31,28 @@ namespace RecordShop.Tests.Repository
         public void GetAllSongs_ReturnsList()
         {
             var result = _songRepository.FetchSongs();
-
-            result.Count.Should().Be(3);
-            result[2].Name.Should().Be("Amy The Real Me");
-
+            result.Count.Should().Be(6);
+            result[5].Name.Should().Be("Amy The Real Me");
         }
 
 
         [Test]
         public void AddSong_AddSongToDb()
         {
-            var songToAdd = new Song { Name = "Amy The Real Me 2", ArtistId = 1, Description = "Yo Yo", ReleaseDate = new DateTime(2024, 02, 02) };
-
+            var songToAdd = new Song("Amy The Real Me 2", 1, "Good", new DateTime(2024, 01, 02), "www.song.com");
             _songRepository.AddSong(songToAdd);
 
             var result = _songRepository.FetchSongs();
 
-            result.Count.Should().Be(4);
-            result[3].Name.Should().Be("Amy The Real Me 2");
+            result.Count.Should().Be(7);
+            result[6].Name.Should().Be("Amy The Real Me 2");
 
         }
 
         [Test]
         public void AddSong_ForeignKeyError()
         {
-            var songToAdd = new Song { Name = "Amy The Real Me 2", ArtistId = 20, Description = "Yo Yo", ReleaseDate = new DateTime(2024, 02, 02) };
-
+            var songToAdd = new Song("Amy The Real Me", 10, "Good", new DateTime(2024, 01, 02), "www.song.com");
             Action addSongAction = () => _songRepository.AddSong(songToAdd);
             addSongAction.Should().Throw<DbUpdateException>();
 

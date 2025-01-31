@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
+using RecordShop.UserInputObjects;
 
 
 namespace RecordShop.Entities
@@ -23,5 +24,21 @@ namespace RecordShop.Entities
 
         public List<Genre> Genres { get; set; }
 
+        public Artist() {} 
+
+        public Artist(ArtistDTO artistDTO)
+        {
+            Name = artistDTO.Name;
+            ImageUrl = artistDTO.ImageUrl;
+            YearsActive = artistDTO.YearsActive;
+        }
+
+        public Artist(string name, string imageUrl, int yearsActive)
+        {
+            Name = name;
+            ImageUrl = imageUrl;
+            YearsActive = yearsActive;
+        }
+        
     }
 }
