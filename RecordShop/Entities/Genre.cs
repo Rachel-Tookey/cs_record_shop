@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using RecordShop.UserInputObjects;
 
 namespace RecordShop.Entities
 {
@@ -10,9 +11,16 @@ namespace RecordShop.Entities
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("artists")]
+        [JsonIgnore]
         public List<Artist> Artists { get; set; }
         
         public Genre() { }
+
+        public Genre(GenreDTO genreDTO)
+        {
+            Id = genreDTO.Id;
+            Name = genreDTO.Name;
+        }
+
     }
 }

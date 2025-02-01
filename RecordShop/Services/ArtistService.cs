@@ -9,7 +9,7 @@ namespace RecordShop.Services
     {
         public List<Artist> GetAllArtists();
 
-        public void AddArtist(Artist artist);
+        public void AddArtist(Artist artist, List<int> genres);
         public Artist GetArtistById(int id);
         public bool ExistsById(int id);
         public Artist UpdateArtistByName(UpdateArtist artistUpdate);
@@ -33,8 +33,9 @@ namespace RecordShop.Services
             return _artistRepository.FetchAllArtists();
         }
 
-        public void AddArtist(Artist artist)
+        public void AddArtist(Artist artist, List<int> genres)
         {
+            artist.Genres = _artistRepository.FetchGenres().Where(g => genres.Contains(g.Id)).ToList();
             _artistRepository.AddArtist(artist);
         }
 
@@ -51,7 +52,6 @@ namespace RecordShop.Services
 
         public Artist UpdateArtistByName(UpdateArtist artistUpdate)
         {
-            Console.WriteLine("Called the service layer: " +  artistUpdate.ImageUrl);
             return _artistRepository.UpdateArtistByName(artistUpdate);
         }
 
