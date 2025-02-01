@@ -35,7 +35,7 @@ namespace RecordShop.Services
 
         public void AddArtist(Artist artist, List<int> genres)
         {
-            artist.Genres = _artistRepository.FetchGenres().Where(g => genres.Contains(g.Id)).ToList();
+            if (genres != null) artist.Genres = _artistRepository.FetchGenres().Where(g => genres.Contains(g.Id)).ToList();
             _artistRepository.AddArtist(artist);
         }
 
