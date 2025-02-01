@@ -40,7 +40,7 @@ namespace RecordShop.Repository
 
         public Artist FetchArtistById(int id)
         {
-            return _recordShopContext.Artists.Where(a => a.Id == id).Include(a => a.Songs).First(); 
+            return _recordShopContext.Artists.Where(a => a.Id == id).Include(a => a.Songs).Include(a => a.Genres).First(); 
 
         }
 
