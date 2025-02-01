@@ -10,6 +10,7 @@ namespace RecordShop.Entities
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
+        [JsonPropertyName("artists")]
         public List<Artist> Artists { get; set; }
         
         public Genre() { }

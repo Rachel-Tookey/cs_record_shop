@@ -14,6 +14,7 @@ namespace RecordShop.Services
         public bool ExistsById(int id);
         public Artist UpdateArtistByName(UpdateArtist artistUpdate);
         public void DeleteById(int id);
+        public List<Genre> GetGenres();
     }
 
 
@@ -59,6 +60,10 @@ namespace RecordShop.Services
             _artistRepository.RemoveById(id);
         }
 
+        public List<Genre> GetGenres()
+        {
+            return _artistRepository.FetchGenres(); 
+        }
 
 
     }

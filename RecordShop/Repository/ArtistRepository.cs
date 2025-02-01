@@ -13,6 +13,7 @@ namespace RecordShop.Repository
         public bool ExistsById(int id);
         public Artist UpdateArtistByName(UpdateArtist artistUpdate);
         public void RemoveById(int id);
+        public List<Genre> FetchGenres();
     }
 
 
@@ -29,7 +30,7 @@ namespace RecordShop.Repository
 
         public List<Artist> FetchAllArtists()
         {
-            return _recordShopContext.Artists.Include(a => a.Songs).ToList();
+            return _recordShopContext.Artists.Include(a => a.Songs).Include(a => a.Genres).ToList();
         }
 
         public void AddArtist(Artist artist)
@@ -66,6 +67,10 @@ namespace RecordShop.Repository
             _recordShopContext.SaveChanges();
         }
 
+        public List<Genre> FetchGenres()
+        {
+            return _recordShopContext.Genres.ToList();
+        }
 
     }
 

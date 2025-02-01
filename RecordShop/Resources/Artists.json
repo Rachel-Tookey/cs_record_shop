@@ -4,21 +4,18 @@
     "name": "Adele",
     "imageurl": "https://upload.wikimedia.org/wikipedia/commons/5/52/Adele_for_Vogue_in_2021.png",
     "yearsactive": 12
-
   },
   {
     "id": 2,
     "name": "Amy Winehouse",
     "imageurl": "https://faroutmagazine.co.uk/static/uploads/1/2023/05/Amy-Winehouse-Far-Out-Magazine-F-1140x855.jpg",
     "yearsactive": 5
-
   },
   {
     "id": 3,
     "name": "Brian Eno",
     "imageurl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4O7fs1ruLmnmzTurgIXSCzitea08nuX4c7w&s",
     "yearsactive": 10
-
   },
   {
     "id": 4,

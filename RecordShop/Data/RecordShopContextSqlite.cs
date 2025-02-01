@@ -12,9 +12,7 @@ namespace RecordShop.Data
         public DbSet<Artist> Artists { get; set; }
 
         public DbSet<Genre> Genres { get; set; }
-
-        public DbSet<ArtistGenre> SongGenres { get; set; }
-
+        
         public RecordShopContextSqlite(DbContextOptions<RecordShopContextSqlite> options) : base(options) {
             Database.EnsureCreated();
         }
@@ -31,6 +29,7 @@ namespace RecordShop.Data
             modelBuilder.Entity<Genre>().HasData(JsonSerializer.Deserialize<List<Genre>>(File.ReadAllText("Resources/Genres.json"))!);
             modelBuilder.Entity<ArtistGenre>().HasData(JsonSerializer.Deserialize<List<ArtistGenre>>(File.ReadAllText("Resources/ArtistGenres.json"))!);
 
+            
             modelBuilder.Entity<Artist>()
                 .HasMany(e => e.Genres)
                 .WithMany(e => e.Artists)

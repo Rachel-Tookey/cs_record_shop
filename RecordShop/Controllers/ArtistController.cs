@@ -61,6 +61,14 @@ namespace RecordShop.Controllers
             return NoContent();
         }
 
+        [HttpGet("genre")]
+        public IActionResult GetGenres()
+        {
+            var genres = _artistService.GetGenres();
+            return Ok(genres);
+        }
+        
+
 
     }
 }
