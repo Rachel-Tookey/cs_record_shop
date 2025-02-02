@@ -7,7 +7,7 @@ namespace RecordShop.Services
 
     public interface ISongService
     {
-        public List<Song> GetSongs(string artistName, string songName, string genre);
+        public List<Song> GetSongs(string artistName, string songName, string[] genres);
         public void AddSong(Song song);
         public Song GetRandomSong();
         public List<Song> GetMatchingSongs(string search);
@@ -25,7 +25,7 @@ namespace RecordShop.Services
             _songRepository = songRepository;
         }
 
-        public List<Song> GetSongs(string artistName = "", string songName = "", string genre = "")
+        public List<Song> GetSongs( string artistName = "", string songName = "", string[] genres = null)
         {
             var songs = _songRepository.FetchSongs();
             if (songs == null) return new List<Song>();
@@ -34,7 +34,7 @@ namespace RecordShop.Services
             
             if (!string.IsNullOrEmpty(artistName)) songs = songs.Where(s => Fuzz.PartialRatio(s.Artist.Name.ToLower(), artistName.ToLower()) > 60).ToList();
             
-            if (!string.IsNullOrEmpty(genre)) songs = songs.Where(s => s.Artist.Genres?.Any(g => g.Name.ToLower() == genre.ToLower()) ?? false).ToList();
+            if (genres != null && genres.Length > 0) songs = songs.Where(s => s.Artist.Genres?.Any(g => genres.Contains(g.Name) ) ?? false).ToList();
 
             return songs.ToList();
         }

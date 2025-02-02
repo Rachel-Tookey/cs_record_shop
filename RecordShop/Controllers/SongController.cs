@@ -1,3 +1,4 @@
+using System.Collections;
 using Microsoft.AspNetCore.Mvc;
 using RecordShop.UserInputObjects;
 using RecordShop.Entities;
@@ -16,12 +17,11 @@ namespace RecordShop.Controllers
         {
             _songService = songService;
         }
-
-
+        
         [HttpGet(Name = "GetSongs")]
-        public IActionResult GetSongs(string artistName = "", string songName = "", string genre = "")
+        public IActionResult GetSongs(string artistName = "", string songName = "", [FromQuery] string[] genres = null)
         {
-            var songs = _songService.GetSongs(artistName, songName, genre);
+            var songs = _songService.GetSongs(artistName, songName, genres);
             return Ok(songs);
         }
         
