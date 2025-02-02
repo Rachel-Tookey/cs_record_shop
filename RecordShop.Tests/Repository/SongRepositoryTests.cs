@@ -31,8 +31,8 @@ namespace RecordShop.Tests.Repository
         public void GetAllSongs_ReturnsList()
         {
             var result = _songRepository.FetchSongs();
-            result.Count.Should().Be(6);
-            result[5].Name.Should().Be("Amy The Real Me");
+            result.Count.Should().Be(10);
+            result[9].Name.Should().Be("Amy The Real Me");
         }
 
 
@@ -44,8 +44,8 @@ namespace RecordShop.Tests.Repository
 
             var result = _songRepository.FetchSongs();
 
-            result.Count.Should().Be(7);
-            result[6].Name.Should().Be("Amy The Real Me 2");
+            result.Count.Should().Be(11);
+            result[10].Name.Should().Be("Amy The Real Me 2");
 
         }
 
@@ -55,7 +55,6 @@ namespace RecordShop.Tests.Repository
             var songToAdd = new Song("Amy The Real Me", 10, "Good", new DateTime(2024, 01, 02), "www.song.com");
             Action addSongAction = () => _songRepository.AddSong(songToAdd);
             addSongAction.Should().Throw<DbUpdateException>();
-
         }
 
 
