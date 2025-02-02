@@ -9,7 +9,7 @@ namespace RecordShop.Services
     {
         public List<Artist> GetAllArtists();
 
-        public void AddArtist(Artist artist, List<int> genres);
+        public void AddArtist(ArtistDTO artist);
         public Artist GetArtistById(int id);
         public bool ExistsById(int id);
         public Artist UpdateArtistByName(UpdateArtist artistUpdate);
@@ -32,12 +32,18 @@ namespace RecordShop.Services
         {
             return _artistRepository.FetchAllArtists();
         }
-
-        public void AddArtist(Artist artist, List<int> genres)
+        
+        public void AddArtist(ArtistDTO artist)
         {
-            if (genres != null) artist.Genres = _artistRepository.FetchGenres().Where(g => genres.Contains(g.Id)).ToList();
-            _artistRepository.AddArtist(artist);
+            Artist newArtist = new Artist(artist);
+            if (artist.GenresDTO != null)
+            {
+                List<int> genres = artist.GenresDTO.Select(g => g.Id).ToList();
+                newArtist.Genres = _artistRepository.FetchGenres().Where(g => genres.Contains(g.Id)).ToList();
+            }
+            _artistRepository.AddArtist(newArtist);
         }
+
 
         public Artist GetArtistById(int id)
         {

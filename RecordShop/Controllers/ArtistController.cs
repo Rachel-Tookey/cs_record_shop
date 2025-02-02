@@ -30,8 +30,7 @@ namespace RecordShop.Controllers
         public IActionResult AddArtist(ArtistDTO artist)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            List<int> genres = artist.GenresDTO == null ? null : artist.GenresDTO.Select(g => g.Id).ToList();
-            _artistService.AddArtist(new Artist(artist), genres);
+            _artistService.AddArtist(artist);
             return Created("/artists", "artist added");
         }
 
