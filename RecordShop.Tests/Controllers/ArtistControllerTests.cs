@@ -86,7 +86,7 @@ namespace RecordShop.Tests.Controllers
 
             var result = (CreatedResult)_artistController.AddArtist(artistToAdd);
 
-            _artistServiceMock.Verify(a => a.AddArtist(It.Is<Artist>(a => a.Name == "Amy Winehouse"), new List<int>()), Times.Once());
+            _artistServiceMock.Verify(a => a.AddArtist(artistToAdd), Times.Once());
         }
 
 
