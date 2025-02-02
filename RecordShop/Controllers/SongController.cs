@@ -35,7 +35,20 @@ namespace RecordShop.Controllers
             return Created("/Songs", "Song added");
         }
 
+        [HttpGet("random")]
+        public IActionResult GetRandomSong()
+        {
+            var randomSong = _songService.GetRandomSong(); 
+            return Ok(randomSong);
+        }
 
-
+        [HttpGet("homepage")]
+        public IActionResult GetMatchingSongArtist(string search = "")
+        {
+            var songs = _songService.GetMatchingSongs(search);
+            return Ok(songs);
+        }
+        
+        
     }
 }
