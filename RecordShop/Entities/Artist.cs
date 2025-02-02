@@ -19,9 +19,10 @@ namespace RecordShop.Entities
 
         [JsonPropertyName("yearsactive")]
         public int YearsActive { get; set; }
-
+        
         public List<Song> Songs { get; set; }
-
+        
+        [JsonPropertyName("genres")]
         public List<Genre> Genres { get; set; }
 
         public Artist() {} 

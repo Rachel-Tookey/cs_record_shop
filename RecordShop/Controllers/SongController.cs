@@ -19,13 +19,12 @@ namespace RecordShop.Controllers
 
 
         [HttpGet(Name = "GetSongs")]
-        public IActionResult GetAlbums()
+        public IActionResult GetSongs(string artistName = "", string songName = "", string genre = "")
         {
-            var albums = _songService.GetSongs();
-            return Ok(albums);
+            var songs = _songService.GetSongs(artistName, songName, genre);
+            return Ok(songs);
         }
-
-
+        
 
         [HttpPost(Name = "AddSongs")]
         public IActionResult AddSong(SongDTO songDto)
@@ -33,20 +32,23 @@ namespace RecordShop.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
             Song newSong = new (songDto);
             _songService.AddSong(newSong);
-
-            //if (newAlbum.Genres.Count > 0)
-            //{
-            //    foreach (var genre in newAlbum.Genres)
-            //    {
-            //        AlbumGenre newAB = new AlbumGenre() { Album = newAlbum, Genre = genre };
-            //    }
-            //}
-
-            
-            return Created("/Albums", "Album added");
+            return Created("/Songs", "Song added");
         }
 
+        [HttpGet("random")]
+        public IActionResult GetRandomSong()
+        {
+            var randomSong = _songService.GetRandomSong(); 
+            return Ok(randomSong);
+        }
 
-
+        [HttpGet("homepage")]
+        public IActionResult GetMatchingSongArtist(string search = "")
+        {
+            var songs = _songService.GetMatchingSongs(search);
+            return Ok(songs);
+        }
+        
+        
     }
 }

@@ -52,7 +52,7 @@ namespace RecordShop.Tests.Services
         {
             var artistToAdd = new Artist("Amy Winehouse", "imageurl", 4);
             
-            _artistService.AddArtist(artistToAdd);
+            _artistService.AddArtist(artistToAdd, new List<int>());
 
             _artistRepositoryMock.Verify(a => a.AddArtist(artistToAdd), Times.Once());
         }

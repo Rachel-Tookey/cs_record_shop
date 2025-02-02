@@ -30,8 +30,7 @@ namespace RecordShop.Controllers
         public IActionResult AddArtist(ArtistDTO artist)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            Artist newArtist = new(artist); 
-            _artistService.AddArtist(newArtist);
+            _artistService.AddArtist(artist);
             return Created("/artists", "artist added");
         }
 
@@ -60,6 +59,14 @@ namespace RecordShop.Controllers
             _artistService.DeleteById(id);
             return NoContent();
         }
+
+        [HttpGet("genre")]
+        public IActionResult GetGenres()
+        {
+            var genres = _artistService.GetGenres();
+            return Ok(genres);
+        }
+        
 
 
     }
