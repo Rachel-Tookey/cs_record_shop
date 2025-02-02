@@ -50,11 +50,11 @@ namespace RecordShop.Tests.Services
         [Test]
         public void PostAlbum_CallsServiceMethodOnce()
         {
-            var artistToAdd = new Artist("Amy Winehouse", "imageurl", 4);
+            var artistToAdd = new ArtistDTO() { Name = "Amy Winehouse", ImageUrl = "imageurl", YearsActive = 4};
             
-            _artistService.AddArtist(artistToAdd, new List<int>());
+            _artistService.AddArtist(artistToAdd);
 
-            _artistRepositoryMock.Verify(a => a.AddArtist(artistToAdd), Times.Once());
+            _artistRepositoryMock.Verify(a => a.AddArtist(It.Is<Artist>(a => a.Name == "Amy Winehouse")), Times.Once());
         }
 
 
