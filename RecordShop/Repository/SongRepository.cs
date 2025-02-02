@@ -8,6 +8,9 @@ namespace RecordShop.Repository
     {
         public List<Song> FetchSongs(); 
         public void AddSong(Song song);
+        public bool ExistsById(int id);
+        public void RemoveById(int id);
+        public Song FetchSongById(int id);
     }
 
     public class SongRepository : ISongRepository
@@ -32,6 +35,24 @@ namespace RecordShop.Repository
             _recordShopContext.SaveChanges();
         }
         
+        public bool ExistsById(int id)
+        {
+            return _recordShopContext.Songs.Where(s => s.Id == id).Any(); 
+        }
+
+        public Song FetchSongById(int id)
+        {
+            return _recordShopContext.Songs.Where(s => s.Id == id).FirstOrDefault();
+        }
+        
+        public void RemoveById(int id)
+        {
+            var songRecord = FetchSongById(id);
+            _recordShopContext.Songs.Remove(songRecord);
+            _recordShopContext.SaveChanges();
+        }
+            
+
     }
 
 }

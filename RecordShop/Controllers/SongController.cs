@@ -48,6 +48,14 @@ namespace RecordShop.Controllers
             var songs = _songService.GetMatchingSongs(search);
             return Ok(songs);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteSong(int id)
+        {
+            if (!_songService.ExistsById(id)) return BadRequest("Id does not exist");
+            _songService.DeleteById(id);
+            return NoContent();
+        }
         
         
     }

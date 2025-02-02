@@ -11,6 +11,8 @@ namespace RecordShop.Services
         public void AddSong(Song song);
         public Song GetRandomSong();
         public List<Song> GetMatchingSongs(string search);
+        public bool ExistsById(int id);
+        public void DeleteById(int id);
     }
 
     
@@ -61,7 +63,15 @@ namespace RecordShop.Services
             _songRepository.AddSong(song); 
         }
 
-        
+        public bool ExistsById(int id)
+        {
+            return _songRepository.ExistsById(id); 
+        }
+
+        public void DeleteById(int id)
+        {
+            _songRepository.RemoveById(id);
+        }
 
     }
 }
