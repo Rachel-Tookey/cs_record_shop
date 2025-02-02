@@ -38,9 +38,9 @@ namespace RecordShop.Tests.Controllers
                 }
             };
 
-            _songServiceMock.Setup(song => song.GetSongs("",  "", "")).Returns(songList);
+            _songServiceMock.Setup(song => song.GetSongs("",  "", null)).Returns(songList);
 
-            var result = (OkObjectResult) _songController.GetSongs("",  "", "");
+            var result = (OkObjectResult) _songController.GetSongs("",  "", null);
 
             result.StatusCode.Should().Be(200);
             result.Value.Should().BeEquivalentTo(songList);
